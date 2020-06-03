@@ -17,9 +17,6 @@
 		<ontimize.boot.version>2.0.0</ontimize.boot.version>
 		<ontimize.jee.version>2.0.0</ontimize.jee.version>
 		<basicproject.version>0.0.1</basicproject.version>
-		<!-- <hsqldatabase.path>src/main/db</hsqldatabase.path> -->
-		<!-- <database.url>jdbc:hsqldb:hsql://localhost:9013/templateDB</database.url> -->
-		<!-- <hsqldb.version>2.3.4</hsqldb.version> -->
 		<jdbcDriver.groupId>org.postgresql</jdbcDriver.groupId>
 		<jdbcDriver.artifactId>postgresql</jdbcDriver.artifactId>
 		<jdbcDriver.version>9.6</jdbcDriver.version>
