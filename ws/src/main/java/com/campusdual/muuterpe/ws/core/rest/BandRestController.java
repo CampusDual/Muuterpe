@@ -16,11 +16,11 @@ import com.ontimize.jee.server.rest.ORestController;
 public class BandRestController extends ORestController<IBandService> {
 
 	@Autowired
-	private IBandService userSrv;
+	private IBandService bandSrv;
 
 	@Override
 	public IBandService getService() {
-		return this.userSrv;
+		return this.bandSrv;
 	}
 
 
