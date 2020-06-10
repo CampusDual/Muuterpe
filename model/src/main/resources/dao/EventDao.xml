@@ -12,4 +12,26 @@
   <Column>ID</Column>
  </UpdateKeys>
  <GeneratedKey>ID</GeneratedKey>
+ 
+ <Queries>
+          <Query id="doemph">
+            <ValidColumns>
+                <Column>event_name</Column>
+                <Column>event_date_time</Column>
+                <Column>event_emph</Column>
+            </ValidColumns>
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.event 
+                    #WHERE#
+                    	
+                ]]>
+            </Sentence>
+        </Query>     
+ 
+ 
+ </Queries>
 </JdbcEntitySetup>
