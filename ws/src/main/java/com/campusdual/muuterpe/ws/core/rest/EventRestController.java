@@ -22,6 +22,12 @@ public class EventRestController extends ORestController<IEventService> {
 	public IEventService getService() {
 		return this.eventSrv;
 	}
-
-
+	
+	public IEventService nextEventQuery() {
+		return this.eventSrv;
+	}
+	
+	
+	
+	
 }
