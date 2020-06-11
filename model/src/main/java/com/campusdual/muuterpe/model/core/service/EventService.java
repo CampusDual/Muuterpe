@@ -50,7 +50,6 @@ public class EventService implements IEventService {
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.eventDao, attrMap, keyMap);
 	}
-
 	@Override
 	public EntityResult nextEventsQuery(Map<String, Object> keyMap, List<String> attrList) {
 
@@ -70,5 +69,6 @@ public class EventService implements IEventService {
 		BasicExpression bexp2 = new BasicExpression(field, BasicOperator.LESS_OP, endDate);
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
+
 
 }
