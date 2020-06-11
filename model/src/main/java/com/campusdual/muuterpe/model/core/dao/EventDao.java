@@ -18,7 +18,7 @@ public class EventDao extends OntimizeJdbcDaoSupport {
 	 public static final String ATTR_EVENT_REGION = "event_region";
 	 public static final String ATTR_EVENT_ADDRESS = "event_address";
 	 public static final String ATTR_EVENT_BUY_TICKETS = "event_buy_tickets";
-	 public static final  String ATTR_EMPH = "band_emph";
+	 public static final String ATTR_EMPH = "band_emph";
 	 public static final String ATTR_EVENT_CREATION_DATE= "event_creation_date";
 	
 	
