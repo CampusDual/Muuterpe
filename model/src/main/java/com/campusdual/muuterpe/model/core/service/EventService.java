@@ -1,11 +1,17 @@
 package com.campusdual.muuterpe.model.core.service;
 
 import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -52,9 +58,15 @@ public class EventService implements IEventService {
 	}
 
 	@Override
-	public EntityResult nextEventsQuery(Map<String, Object> keyMap, List<String> attrList) {
-
+	public EntityResult nextEventsQuery() {
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		List<String> attrList = new ArrayList<String>();
+		attrList.addAll(Arrays.asList(EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME, EventDao.ATTR_EVENT_ID));
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getEventBetweenDates());
+		
+//		Date bbddDate= new Date();
+//		LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//		long daysBetween=Duration.between(LocalDate.now().atStartOfDay(), ldate.atStartOfDay()).toDays();
 
 		return this.eventQuery(keyMap, attrList);
 	}
