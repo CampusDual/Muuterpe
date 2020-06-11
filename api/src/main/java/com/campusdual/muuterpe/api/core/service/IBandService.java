@@ -17,6 +17,9 @@ public interface IBandService {
 	 public EntityResult bandDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 
 	 public EntityResult bandsRecent() throws OntimizeJEERuntimeException;
+	 public EntityResult bandsMostVisit()throws OntimizeJEERuntimeException;
+	 
+	 public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 
 	
 	}

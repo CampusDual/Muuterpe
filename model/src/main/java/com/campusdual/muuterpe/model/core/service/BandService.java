@@ -1,12 +1,12 @@
 package com.campusdual.muuterpe.model.core.service;
 
-import java.time.Duration;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.campusdual.muuterpe.api.core.service.IBandService;
 import com.campusdual.muuterpe.model.core.dao.BandDao;
+import com.campusdual.muuterpe.model.core.dao.BandVisitsDao;
 import com.campusdual.muuterpe.model.core.dao.ConfigurationDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.db.SQLStatementBuilder;
@@ -33,16 +34,21 @@ public class BandService implements IBandService {
 	private BandDao bandDao;
 	@Autowired
 	private ConfigurationDao configurationDao;
-	// private VisitsDao visitsDao;
+	@Autowired
+	private BandVisitsDao bandvisitsDao;
 	// private ControllerDao controllerDao;
 
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
 
 	@Override
-	public EntityResult bandQuery(Map<String, Object> keyMap, List<String> attrList)
-			throws OntimizeJEERuntimeException {
+	public EntityResult bandQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(bandDao, keyMap, attrList);
+	}
+	
+	@Override
+	public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(bandDao,keyMap, attrList,"visits");
 	}
 
 	@Override
@@ -88,5 +94,25 @@ public class BandService implements IBandService {
 				? (Integer) res.getRecordValues(0).get(ConfigurationDao.ATTR_EMPH_DAYS)
 				: 0;
 	}
+	
+	
+	@Override
+	public EntityResult bandsMostVisit() {
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		List<String> columns = new ArrayList<String>();
+		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID,BandVisitsDao.ATTR_VISITIS_NUM));
+		return this.bandVisitsQuery(keyMap, columns);
+	}
 
+	
+	private Integer getNumberOfBandsFromConfiguration() {
+		EntityResult res = this.daoHelper.query(this.configurationDao, new HashMap<String, Object>(),
+				Arrays.asList(ConfigurationDao.ATTR_BAND_NUMBER));
+		return res.containsKey(ConfigurationDao.ATTR_BAND_NUMBER)
+				? (Integer) res.getRecordValues(0).get(ConfigurationDao.ATTR_BAND_NUMBER)
+				: 0;
+	}
+		
+
+	
 }

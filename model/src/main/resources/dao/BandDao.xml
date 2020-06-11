@@ -12,4 +12,19 @@
   <Column>ID</Column>
  </UpdateKeys>
  <GeneratedKey>ID</GeneratedKey>
+ <Queries>
+        <Query id="visits">
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.band
+                    INNER JOIN ${mainschema}.band_visits ON band.band_id = band_visits.band_visited_id
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
+        </Queries>
 </JdbcEntitySetup>
+

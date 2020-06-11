@@ -27,10 +27,13 @@ public class BandRestController extends ORestController<IBandService> {
 	}
 	
 	@RequestMapping(value = "/getBandsRecent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
-	public EntityResult getBandService() {
+	public EntityResult getBandRecent() {
 		return this.bandSrv.bandsRecent();
 	}
 	
-	
+	@RequestMapping(value = "/getBandsVisits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult getBandVisits() {
+		return this.bandSrv.bandsMostVisit();
+	}
 	
 }
