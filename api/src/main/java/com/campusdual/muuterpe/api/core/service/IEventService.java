@@ -16,7 +16,7 @@ public interface IEventService {
 	public EntityResult eventInsert(Map<?, ?> attrMap);
 	public EntityResult eventUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap);
 	public EntityResult eventDelete(Map<?, ?> keyMap);
-	public EntityResult nextEventsQuery();
+	
 
 
 	

@@ -57,30 +57,5 @@ public class EventService implements IEventService {
 		return this.daoHelper.update(this.eventDao, attrMap, keyMap);
 	}
 
-	@Override
-	public EntityResult nextEventsQuery() {
-		Map<String, Object> keyMap = new HashMap<String, Object>();
-		List<String> attrList = new ArrayList<String>();
-		attrList.addAll(Arrays.asList(EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME, EventDao.ATTR_EVENT_ID));
-		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getEventBetweenDates());
-		
-//		Date bbddDate= new Date();
-//		LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//		long daysBetween=Duration.between(LocalDate.now().atStartOfDay(), ldate.atStartOfDay()).toDays();
-
-		return this.eventQuery(keyMap, attrList);
-	}
-
-	private BasicExpression getEventBetweenDates() {
-		Calendar cal = Calendar.getInstance();
-		Date startDate = cal.getTime();
-		cal.add(Calendar.DAY_OF_WEEK, 7);
-		Date endDate = cal.getTime();
-
-		BasicField field = new BasicField(EventDao.ATTR_EVENT_DATE_TIME);
-		BasicExpression bexp1 = new BasicExpression(field, BasicOperator.MORE_EQUAL_OP, startDate);
-		BasicExpression bexp2 = new BasicExpression(field, BasicOperator.LESS_OP, endDate);
-		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
-	}
 
 }

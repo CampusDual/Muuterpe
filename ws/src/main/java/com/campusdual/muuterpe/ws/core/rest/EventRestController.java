@@ -29,11 +29,6 @@ public class EventRestController extends ORestController<IEventService> {
 		return this.eventService;
 	}
 	
-	@RequestMapping(value = "nextEvents", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult nextEventsQuery() {
-		
-		return this.eventService.nextEventsQuery();
-	}
 	
 	
 	
