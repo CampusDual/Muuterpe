@@ -19,6 +19,7 @@ public interface IEventService {
 	public EntityResult nextEventsQuery(Map<String, Object> keyMap, List<String> attrList);
 
 
+
 	
 
 }
