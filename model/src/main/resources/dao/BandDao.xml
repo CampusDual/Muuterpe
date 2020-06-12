@@ -14,18 +14,24 @@
 	<GeneratedKey>ID</GeneratedKey>
 	<Queries>
 		<Query id="band_visits">
+					<AmbiguousColumns>
+				<AmbiguousColumn name="band_id" prefix="bc" />
+			</AmbiguousColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
                         #COLUMNS#
                     FROM
-                        ${mainschema}.BAND
-                    INNER JOIN ${mainschema}.BAND_VISITS ON BAND.BAND_ID = BAND_VISITS.BAND_VISITED_ID
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_VISITS bv ON b.BAND_ID = bv.BAND_ID
                     #WHERE#
                 ]]>
             </Sentence>
 		</Query>
 		<Query id="band_category">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="category_id" prefix="bc" />
+			</AmbiguousColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
