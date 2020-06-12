@@ -52,13 +52,16 @@ public class EventService implements IEventService {
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.eventDao, attrMap, keyMap);
 	}
-
 	@Override
 	public EntityResult nextEventsQuery() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		List<String> attrList = new ArrayList<String>();
 		attrList.addAll(Arrays.asList(EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME, EventDao.ATTR_EVENT_ID));
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getEventBetweenDates());
+		
+//		Date bbddDate= new Date();
+//		LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//		long daysBetween=Duration.between(LocalDate.now().atStartOfDay(), ldate.atStartOfDay()).toDays();
 
 //        Date bbddDate= new Date();
 //        LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -78,7 +81,6 @@ public class EventService implements IEventService {
 		BasicExpression bexp2 = new BasicExpression(field, BasicOperator.LESS_OP, endDate);
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
-
 
 
 }
