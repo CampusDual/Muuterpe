@@ -33,9 +33,6 @@ public class BandService implements IBandService {
 	private BandDao bandDao;
 	@Autowired
 	private ConfigurationDao configurationDao;
-	@Autowired
-	private BandVisitsDao bandvisitsDao;
-	// private ControllerDao controllerDao;
 
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;

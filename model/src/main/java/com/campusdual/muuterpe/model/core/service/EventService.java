@@ -1,6 +1,8 @@
 package com.campusdual.muuterpe.model.core.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -52,8 +54,16 @@ public class EventService implements IEventService {
 	}
 
 	@Override
-	public EntityResult nextEventsQuery(Map<String, Object> keyMap, List<String> attrList) {
+	public EntityResult nextEventsQuery() {
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		List<String> attrList = new ArrayList<String>();
+		attrList.addAll(Arrays.asList(EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME, EventDao.ATTR_EVENT_ID));
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getEventBetweenDates());
+
+//        Date bbddDate= new Date();
+//        LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        long daysBetween=Duration.between(LocalDate.now().atStartOfDay(), ldate.atStartOfDay()).toDays();
+
 		return this.eventQuery(keyMap, attrList);
 	}
 
@@ -68,5 +78,7 @@ public class EventService implements IEventService {
 		BasicExpression bexp2 = new BasicExpression(field, BasicOperator.LESS_OP, endDate);
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
+
+
 
 }

@@ -15,7 +15,7 @@
 	<Queries>
 		<Query id="band_visits">
 					<AmbiguousColumns>
-				<AmbiguousColumn name="band_id" prefix="bc" />
+				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
 			<Sentence>
                 <![CDATA[
