@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JdbcEntitySetup
- xmlns="http://www.ontimize.com/schema/jdbc"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
- catalog="" schema="${mainschema}" table="band"
- datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
- <DeleteKeys>
-  <Column>ID</Column>
- </DeleteKeys>
- <UpdateKeys>
-  <Column>ID</Column>
- </UpdateKeys>
- <GeneratedKey>ID</GeneratedKey>
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog="" schema="${mainschema}" table="BAND"
+	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+	<DeleteKeys>
+		<Column>ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>ID</GeneratedKey>
+	<Queries>
+		<Query id="band_visits">
+					<AmbiguousColumns>
+				<AmbiguousColumn name="band_id" prefix="b" />
+			</AmbiguousColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_VISITS bv ON b.BAND_ID = bv.BAND_ID
+                    #WHERE#
+                ]]>
+            </Sentence>
+		</Query>
+		<Query id="band_category">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="category_id" prefix="bc" />
+			</AmbiguousColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
+                    INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
+                    #WHERE#
+                ]]>
+            </Sentence>
+		</Query>
+	</Queries>
 </JdbcEntitySetup>
+

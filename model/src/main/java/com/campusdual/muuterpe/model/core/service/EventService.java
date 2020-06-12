@@ -63,6 +63,10 @@ public class EventService implements IEventService {
 //		LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 //		long daysBetween=Duration.between(LocalDate.now().atStartOfDay(), ldate.atStartOfDay()).toDays();
 
+//        Date bbddDate= new Date();
+//        LocalDate ldate=bbddDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        long daysBetween=Duration.between(LocalDate.now().atStartOfDay(), ldate.atStartOfDay()).toDays();
+
 		return this.eventQuery(keyMap, attrList);
 	}
 
@@ -77,13 +81,6 @@ public class EventService implements IEventService {
 		BasicExpression bexp2 = new BasicExpression(field, BasicOperator.LESS_OP, endDate);
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
-
-	@Override
-	public EntityResult nextEventsQuery(Map<String, Object> keyMap, List<String> attrList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 }

@@ -1,6 +1,5 @@
 package com.campusdual.muuterpe.ws.core.rest;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
@@ -12,10 +11,9 @@ import com.campusdual.muuterpe.api.core.service.IEventService;
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.server.rest.ORestController;
 
-
 @RestController
 @RequestMapping("/events")
-@ComponentScan(basePackageClasses={com.campusdual.muuterpe.api.core.service.IEventService.class})
+@ComponentScan(basePackageClasses = { com.campusdual.muuterpe.api.core.service.IEventService.class })
 public class EventRestController extends ORestController<IEventService> {
 
 	@Autowired
@@ -25,18 +23,12 @@ public class EventRestController extends ORestController<IEventService> {
 	public IEventService getService() {
 		return this.eventService;
 	}
-	
-	public IEventService nextEventQuery() {
-		return this.eventService;
-	}
-	@RequestMapping(value = "/nextEvents", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult nextEventsQuery() {
-		
+
+	@RequestMapping(value = "/getNextEvents", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult geNextEvents() {
 		return this.eventService.nextEventsQuery();
 	}
-	
-	
-	
-	
-	
+
 }
+
+
