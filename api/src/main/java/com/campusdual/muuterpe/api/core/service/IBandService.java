@@ -25,5 +25,7 @@ public interface IBandService {
 
 	public EntityResult bandCategoryQuery(Integer categoryId);
 
+	public EntityResult bandbyNameQuery(String bandName);
+
 	
 	}

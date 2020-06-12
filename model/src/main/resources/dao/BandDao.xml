@@ -14,7 +14,7 @@
 	<GeneratedKey>ID</GeneratedKey>
 	<Queries>
 		<Query id="band_visits">
-					<AmbiguousColumns>
+			<AmbiguousColumns>
 				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
 			<Sentence>
@@ -41,6 +41,27 @@
                     INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
                     INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
+                ]]>
+            </Sentence>
+		</Query>
+		<Query id="get_band_by_name">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="category_id" prefix="bc" />
+			</AmbiguousColumns>
+			<ValidColumns>
+				<Column>band_name</Column>
+				<Column>category_name</Column>
+			</ValidColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                        BAND_NAME, ARRAY_TO_STRING(ARRAY_AGG(DISTINCT CATEGORY_NAME), ', ') AS CATEGORY
+                    FROM
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
+                    INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
+                    #WHERE#
+                    GROUP BY band_name;              
                 ]]>
             </Sentence>
 		</Query>

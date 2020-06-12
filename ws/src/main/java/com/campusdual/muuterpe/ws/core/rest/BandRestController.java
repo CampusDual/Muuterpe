@@ -41,4 +41,9 @@ public class BandRestController extends ORestController<IBandService> {
 	public EntityResult getBandByCategoy(@RequestParam(required = true) Integer categoryId) {
 		return this.bandSrv.bandCategoryQuery(categoryId);
 	}
+	
+	@RequestMapping(value = "/getBandsByName", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult getBandByName(@RequestParam(required = true) String bandName) {
+		return this.bandSrv.bandbyNameQuery(bandName);
+	}
 }
