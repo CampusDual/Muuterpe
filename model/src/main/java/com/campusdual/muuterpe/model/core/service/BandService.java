@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.campusdual.muuterpe.api.core.service.IBandService;
 import com.campusdual.muuterpe.model.core.dao.BandDao;
 import com.campusdual.muuterpe.model.core.dao.BandVisitsDao;
+import com.campusdual.muuterpe.model.core.dao.CategoryDao;
 import com.campusdual.muuterpe.model.core.dao.ConfigurationDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.db.SQLStatementBuilder;
@@ -48,8 +49,16 @@ public class BandService implements IBandService {
 	
 	@Override
 	public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-		return this.daoHelper.query(bandDao,keyMap, attrList,"visits");
+		return this.daoHelper.query(bandDao,keyMap, attrList,"band_visits");
 	}
+	
+	@Override
+	public EntityResult bandCategoryQuery(Integer categoryId) {
+		
+		Map<String, Object> keyMap= new HashMap<String, Object>();
+		keyMap.put(CategoryDao.ATTR_ID, categoryId);
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_NAME, CategoryDao.ATTR_NAME), "band_category");
+	} 
 
 	@Override
 	public EntityResult bandInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
@@ -112,7 +121,9 @@ public class BandService implements IBandService {
 				? (Integer) res.getRecordValues(0).get(ConfigurationDao.ATTR_BAND_NUMBER)
 				: 0;
 	}
-		
+	
+	
+	
 
 	
 }

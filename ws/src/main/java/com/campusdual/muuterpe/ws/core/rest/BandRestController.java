@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.campusdual.muuterpe.api.core.service.IBandService;
 import com.ontimize.db.EntityResult;
@@ -36,4 +37,8 @@ public class BandRestController extends ORestController<IBandService> {
 		return this.bandSrv.bandsMostVisit();
 	}
 	
+//	@RequestMapping(value = "/getBandsCategory", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
+//	public EntityResult getBandCategoy(@RequestParam(required = true) Integer id) {
+//		return this.bandSrv.bandCategoryQuery(id);
+//	}
 }

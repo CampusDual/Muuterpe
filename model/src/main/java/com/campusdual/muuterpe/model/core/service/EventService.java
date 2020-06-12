@@ -53,9 +53,7 @@ public class EventService implements IEventService {
 
 	@Override
 	public EntityResult nextEventsQuery(Map<String, Object> keyMap, List<String> attrList) {
-
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getEventBetweenDates());
-
 		return this.eventQuery(keyMap, attrList);
 	}
 
