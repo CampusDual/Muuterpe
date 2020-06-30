@@ -1,6 +1,7 @@
 package com.campusdual.muuterpe.model.core.service;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.campusdual.muuterpe.api.core.service.IEventService;
+import com.campusdual.muuterpe.model.core.dao.BandDao;
 import com.campusdual.muuterpe.model.core.dao.EventDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.db.SQLStatementBuilder;
@@ -38,7 +40,39 @@ public class EventService implements IEventService {
 	public EntityResult eventQuery(Map<?, ?> keyMap, List<?> attrList) {
 		return this.daoHelper.query(eventDao, keyMap, attrList);
 	}
-
+	
+	@Override
+	public EntityResult eventById(int eventId) {
+		Map<String, Object> keyMap= new HashMap<String, Object>();
+		keyMap.put(EventDao.ATTR_EVENT_ID, eventId);
+		return this.daoHelper.query(eventDao, keyMap, Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_NAME,EventDao.ATTR_EVENT_DATE_TIME ,BandDao.ATTR_NAME), "get_events_details");
+	}
+	
+	@Override
+	public EntityResult eventByStateQuery (String stateName) {
+		Map<String, Object> keyMap= new HashMap<String, Object>();
+		keyMap.put(EventDao.ATTR_EVENT_REGION, stateName);
+		return this.daoHelper.query(eventDao, keyMap, Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_NAME,EventDao.ATTR_EVENT_DATE_TIME ,BandDao.ATTR_NAME), "get_events_details");
+	}
+	
+	@Override
+	public EntityResult eventByDateQuery (String eventDate){
+		Date date = new Date();
+		try {
+			date = stringToDate(eventDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Map<String, Object> keyMap= new HashMap<String, Object>();
+		keyMap.put(EventDao.ATTR_EVENT_DATE_TIME, date);
+		return this.daoHelper.query(eventDao, keyMap, Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_NAME,EventDao.ATTR_EVENT_DATE_TIME ,BandDao.ATTR_NAME), "get_events_details");
+	}
+	
+	private Date stringToDate(String eventDate)throws Exception {
+	    Date date=new SimpleDateFormat("dd/MM/yyyy").parse(eventDate);  
+	    return date;  
+	}
+	
 	public EntityResult eventInsert(Map<?, ?> attrMap) {
 		return this.daoHelper.insert(eventDao, attrMap);
 	}

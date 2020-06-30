@@ -59,9 +59,7 @@ public class BandService implements IBandService {
 	public EntityResult bandbyNameQuery (String bandName) {
 		Map<String, Object> keyMap= new HashMap<String, Object>();
 		keyMap.put(BandDao.ATTR_NAME, bandName);
-		List<String> columns = new ArrayList<String>();
-		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, CategoryDao.ATTR_NAME));
-		return this.daoHelper.query(bandDao, keyMap, columns, "get_band_by_name");
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_NAME, CategoryDao.ATTR_NAME), "get_band_by_name");
 	}
 
 	@Override
@@ -94,9 +92,13 @@ public class BandService implements IBandService {
 
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_WEEK, -lastDays);
+		
+		Calendar today = Calendar.getInstance();
 
 		BasicField startEmphDate = new BasicField(BandDao.ATTR_CREATION_DATE);
-		return new BasicExpression(startEmphDate, BasicOperator.MORE_EQUAL_OP, cal.getTime());
+		BasicExpression bexp1 = new BasicExpression(startEmphDate, BasicOperator.MORE_EQUAL_OP, cal.getTime());
+		BasicExpression bexp2 = new BasicExpression(startEmphDate, BasicOperator.LESS_EQUAL_OP, today.getTime());
+		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 
 	}
 
@@ -113,7 +115,7 @@ public class BandService implements IBandService {
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		List<String> columns = new ArrayList<String>();
-		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID,BandVisitsDao.ATTR_VISITIS_NUM));
+		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
 		return this.bandVisitsQuery(keyMap, columns);
 	}
 
@@ -126,8 +128,32 @@ public class BandService implements IBandService {
 				: 0;
 	}
 	
-	
-	
+	@Override
+	public EntityResult getBox() {
+		Integer num = this.getNumberOfBandsFromConfiguration();
+		//if 
+		EntityResult bands = this.entityBands();
+		EntityResult bandsEmph = new EntityResult();
+		EntityResult bandsMostVisit = this.bandsMostVisit();
+		EntityResult bandsRecent = this.bandsRecent();
 
+		bandsEmph.setCode(bands.getCode());
+		bandsEmph.setColumnSQLTypes(bands.getColumnSQLTypes());
+		bandsEmph.setMessage(bands.getMessage());
+		
+		for (int i = 0; i < num; i++) {
+			bandsEmph.addRecord(bandsMostVisit.getRecordValues(i));
+			bandsEmph.addRecord(bandsRecent.getRecordValues(i));
+		}
+		return bandsEmph;
+	}
+	
+	private EntityResult entityBands() {
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		List<String> columns = new ArrayList<String>();
+		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
+		EntityResult bands = this.bandQuery(keyMap, columns);
+		return bands;
+	}
 	
 }

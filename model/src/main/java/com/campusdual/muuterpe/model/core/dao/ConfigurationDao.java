@@ -15,7 +15,7 @@ public class ConfigurationDao extends OntimizeJdbcDaoSupport {
 	public static final String ATTR_ID = "configuration_id";
 	 public static final String ATTR_EMPH_DAYS= "emphasis_days" ;
 	 public static final String ATTR_EVENT_IMG = "event_images_path" ;
-	 public static final  String ATTR_BAND_IMG = "band_images_path";
+	 public static final String ATTR_BAND_IMG = "band_images_path";
 	 public static final String ATTR_NEWS_IMG = "news_images_path";
 	 public static final String ATTR_BAND_NUMBER = "band_number";
 	

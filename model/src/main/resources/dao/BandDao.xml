@@ -25,6 +25,7 @@
                         ${mainschema}.BAND b
                     INNER JOIN ${mainschema}.BAND_VISITS bv ON b.BAND_ID = bv.BAND_ID
                     #WHERE#
+                    ORDER BY VISITS_NUM DESC
                 ]]>
             </Sentence>
 		</Query>
@@ -48,20 +49,16 @@
 			<AmbiguousColumns>
 				<AmbiguousColumn name="category_id" prefix="bc" />
 			</AmbiguousColumns>
-			<ValidColumns>
-				<Column>band_name</Column>
-				<Column>category_name</Column>
-			</ValidColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
-                        BAND_NAME, ARRAY_TO_STRING(ARRAY_AGG(DISTINCT CATEGORY_NAME), ', ') AS CATEGORY
+                    	#COLUMNS#
                     FROM
                         ${mainschema}.BAND b
                     INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
                     INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
-                    GROUP BY band_name;              
+                    GROUP BY BAND_NAME, CATEGORY_NAME;              
                 ]]>
             </Sentence>
 		</Query>
