@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JdbcEntitySetup
- xmlns="http://www.ontimize.com/schema/jdbc"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
- catalog="" schema="${mainschema}" table="event"
- datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
- <DeleteKeys>
-  <Column>ID</Column>
- </DeleteKeys>
- <UpdateKeys>
-  <Column>ID</Column>
- </UpdateKeys>
- <GeneratedKey>ID</GeneratedKey>
- 
- <Queries>
-          <Query id="doemph">
-            <ValidColumns>
-                <Column>event_name</Column>
-                <Column>event_date_time</Column>
-                <Column>event_emph</Column>
-            </ValidColumns>
-            <Sentence>
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog="" schema="${mainschema}" table="EVENT"
+	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+	<DeleteKeys>
+		<Column>ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>ID</GeneratedKey>
+
+	<Queries>
+		<Query id="doemph">
+			<ValidColumns>
+				<Column>EVENT_NAME</Column>
+				<Column>EVENT_DATE_TIME</Column>
+				<Column>EVENT_EMPH</Column>
+			</ValidColumns>
+			<Sentence>
                 <![CDATA[
                     SELECT
                         #COLUMNS#
                     FROM
-                        ${mainschema}.event 
+                        ${mainschema}.EVENT 
                     #WHERE#
                     	
                 ]]>
             </Sentence>
-        </Query>     
- 
- 
- </Queries>
+		</Query>
+		<Query id="get_events_details">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="band_id" prefix="b" />
+				<AmbiguousColumn name="event_id" prefix="e" />
+			</AmbiguousColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                     #COLUMNS#
+                    FROM
+                        ${mainschema}.EVENT e
+                    INNER JOIN ${mainschema}.BAND_EVENT be ON e.EVENT_ID = be.EVENT_ID
+                    INNER JOIN ${mainschema}.BAND b ON be.BAND_ID = b.BAND_ID
+                    #WHERE#
+                    GROUP BY EVENT_NAME,EVENT_REGION, EVENT_DATE_TIME,BAND_NAME;              
+                ]]>
+            </Sentence>
+		</Query>
+
+	</Queries>
 </JdbcEntitySetup>

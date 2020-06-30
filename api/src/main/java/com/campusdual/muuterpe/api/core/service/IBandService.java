@@ -27,5 +27,7 @@ public interface IBandService {
 
 	public EntityResult bandbyNameQuery(String bandName);
 
+	public EntityResult getBox() throws OntimizeJEERuntimeException;;
+
 	
 	}

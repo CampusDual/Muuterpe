@@ -12,5 +12,8 @@ public interface IEventService {
 	public EntityResult eventUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap);
 	public EntityResult eventDelete(Map<?, ?> keyMap);
 	public EntityResult nextEventsQuery();
-
+	public EntityResult eventByStateQuery(String stateName);
+	public EntityResult eventByDateQuery(String eventDate);
+	public EntityResult eventById(int eventId);
+	 
 }
