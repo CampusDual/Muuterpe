@@ -16,6 +16,7 @@
 		<Query id="band_visits">
 			<AmbiguousColumns>
 				<AmbiguousColumn name="band_id" prefix="b" />
+				<AmbiguousColumn name="category_id" prefix="bc" />
 			</AmbiguousColumns>
 			<Sentence>
                 <![CDATA[
@@ -24,6 +25,8 @@
                     FROM
                         ${mainschema}.BAND b
                     INNER JOIN ${mainschema}.BAND_VISITS bv ON b.BAND_ID = bv.BAND_ID
+                    INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
+                    INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
                     ORDER BY VISITS_NUM DESC
                 ]]>
@@ -32,6 +35,7 @@
 		<Query id="band_category">
 			<AmbiguousColumns>
 				<AmbiguousColumn name="category_id" prefix="bc" />
+				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
 			<Sentence>
                 <![CDATA[

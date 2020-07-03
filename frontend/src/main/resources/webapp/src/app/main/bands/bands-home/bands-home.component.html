@@ -1,10 +1,22 @@
-
+<!-- 
 <div fxFlex>
-    <o-table fxFlex attr="BANDTABLE" service="bands" entity="getBandsEmph" query-method="PPPPPPP" keys="BAND_ID" 
-      columns="band_id;band_name;band_info;band_instagram;band_facebook;band_youtube;band_creation_date"
+    <o-table fxFlex attr="BANDTABLE" service="bands" entity="getBandsEmph" keys="BAND_ID" 
+      columns="band_id;band_name"
       visible-columns="band_name" query-rows="20">
       <o-table-column attr="PHOTO" title="PHOTO" orderable="no" searchable="no" type="image" avatar="yes" 
         empty-image="assets/images/no-image.png" image-type="base64"></o-table-column>
       <o-table-column attr="band_name" title="NAME" width="100px"></o-table-column>
     </o-table>
-    </div>
+    </div> -->
+
+    <o-grid #grid attr="BANDTABLE"  title="BANDAS DESTACADAS" service="bands" entity="getBandsEmph" columns="band_name;category_name"
+    keys="BAND_ID" [fixed-header]="true" style="height:'600px'" pagination-controls="yes" quick-filter="no">
+      <o-grid-item *ngFor="let list of grid.dataArray">
+        <o-column layout-padding class="container-item">
+          <img attr="charmander" src="assets/images/MosaicoCharmander.jpg" height="100%" width="100%"
+          auto-fit="true">
+          <div class="name"><b>{{ list.band_name }}</b></div>
+          <div class="audiotrack">
+            <mat-icon>audiotrack</mat-icon> <span> {{ list.category_name }} </span>
+          </div>
+          <div class="domain">

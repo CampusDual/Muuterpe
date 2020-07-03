@@ -43,11 +43,6 @@ public class BandService implements IBandService {
 	}
 	
 	@Override
-	public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-		return this.daoHelper.query(bandDao,keyMap, attrList,"band_visits");
-	}
-	
-	@Override
 	public EntityResult bandByCategoryQuery(Integer categoryId) {	
 		Map<String, Object> keyMap= new HashMap<String, Object>();
 		keyMap.put(CategoryDao.ATTR_ID, categoryId);
@@ -87,10 +82,8 @@ public class BandService implements IBandService {
 	@Override
 	public EntityResult bandsRecent() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		List<String> columns = new ArrayList<String>();
-		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getBandsRencent());
-		return this.bandQuery(keyMap, columns);
+		return this.daoHelper.query(bandDao,keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID, CategoryDao.ATTR_NAME),"band_category");
 	}
 
 	private BasicExpression getBandsRencent() {
@@ -116,11 +109,10 @@ public class BandService implements IBandService {
 				: 0;
 	}
 	
-	
 	@Override
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		return this.bandVisitsQuery(keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
+		return this.daoHelper.query(bandDao,keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID, CategoryDao.ATTR_NAME),"band_visits");
 	}
 
 	

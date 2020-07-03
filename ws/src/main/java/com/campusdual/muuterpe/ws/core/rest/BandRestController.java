@@ -47,7 +47,7 @@ public class BandRestController extends ORestController<IBandService> {
 		return this.bandService.bandByNameQuery(bandName);
 	}
 	
-	@RequestMapping(value = "/getBandsEmph", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
+	@RequestMapping(value = "/getBandsEmph/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandEmph() {
 		return this.bandService.getBox();
 	}

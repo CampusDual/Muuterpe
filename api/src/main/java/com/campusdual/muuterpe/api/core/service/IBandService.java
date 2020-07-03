@@ -21,8 +21,6 @@ public interface IBandService {
 
 	public EntityResult bandsMostVisit() throws OntimizeJEERuntimeException;
 
-	public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
-
 	public EntityResult bandByCategoryQuery(Integer categoryId);
 
 	public EntityResult bandByNameQuery(String bandName);
