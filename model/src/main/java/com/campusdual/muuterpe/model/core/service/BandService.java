@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.campusdual.muuterpe.api.core.service.IBandService;
+import com.campusdual.muuterpe.model.core.dao.BandCommentDao;
 import com.campusdual.muuterpe.model.core.dao.BandDao;
-import com.campusdual.muuterpe.model.core.dao.BandVisitsDao;
 import com.campusdual.muuterpe.model.core.dao.CategoryDao;
 import com.campusdual.muuterpe.model.core.dao.ConfigurationDao;
 import com.ontimize.db.EntityResult;
@@ -33,9 +33,9 @@ public class BandService implements IBandService {
 	private BandDao bandDao;
 	@Autowired
 	private ConfigurationDao configurationDao;
-
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
+	
 
 	@Override
 	public EntityResult bandQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
@@ -48,18 +48,24 @@ public class BandService implements IBandService {
 	}
 	
 	@Override
-	public EntityResult bandCategoryQuery(Integer categoryId) {
-		
+	public EntityResult bandByCategoryQuery(Integer categoryId) {	
 		Map<String, Object> keyMap= new HashMap<String, Object>();
 		keyMap.put(CategoryDao.ATTR_ID, categoryId);
 		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_NAME, CategoryDao.ATTR_NAME), "band_category");
 	} 
 	
 	@Override
-	public EntityResult bandbyNameQuery (String bandName) {
+	public EntityResult bandByNameQuery (String bandName) {
 		Map<String, Object> keyMap= new HashMap<String, Object>();
 		keyMap.put(BandDao.ATTR_NAME, bandName);
 		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_NAME, CategoryDao.ATTR_NAME), "get_band_by_name");
+	}
+	
+	@Override
+	public EntityResult bandCommentsQuery (int bandId) {
+		Map<String, Object> keyMap= new HashMap<String, Object>();
+		keyMap.put(BandDao.ATTR_ID, bandId);
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_NAME, BandCommentDao.ATTR_ALIAS, BandCommentDao.ATTR_BODY), "get_band_comment");
 	}
 
 	@Override
@@ -90,13 +96,13 @@ public class BandService implements IBandService {
 	private BasicExpression getBandsRencent() {
 		Integer lastDays = this.getLastDaysFromConfiguration();
 
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DAY_OF_WEEK, -lastDays);
+		Calendar configurationDays = Calendar.getInstance();
+		configurationDays.add(Calendar.DAY_OF_WEEK, -lastDays);
 		
 		Calendar today = Calendar.getInstance();
 
 		BasicField startEmphDate = new BasicField(BandDao.ATTR_CREATION_DATE);
-		BasicExpression bexp1 = new BasicExpression(startEmphDate, BasicOperator.MORE_EQUAL_OP, cal.getTime());
+		BasicExpression bexp1 = new BasicExpression(startEmphDate, BasicOperator.MORE_EQUAL_OP, configurationDays.getTime());
 		BasicExpression bexp2 = new BasicExpression(startEmphDate, BasicOperator.LESS_EQUAL_OP, today.getTime());
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 
@@ -114,9 +120,7 @@ public class BandService implements IBandService {
 	@Override
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		List<String> columns = new ArrayList<String>();
-		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
-		return this.bandVisitsQuery(keyMap, columns);
+		return this.bandVisitsQuery(keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
 	}
 
 	
@@ -150,9 +154,7 @@ public class BandService implements IBandService {
 	
 	private EntityResult entityBands() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		List<String> columns = new ArrayList<String>();
-		columns.addAll(Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
-		EntityResult bands = this.bandQuery(keyMap, columns);
+		EntityResult bands = this.bandQuery(keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
 		return bands;
 	}
 	

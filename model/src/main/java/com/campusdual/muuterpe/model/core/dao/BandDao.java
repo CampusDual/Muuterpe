@@ -15,7 +15,6 @@ public class BandDao extends OntimizeJdbcDaoSupport {
 	public static final String ATTR_ID = "band_id";
 	 public static final String ATTR_NAME= "band_name" ;
 	 public static final String ATTR_INFO = "band_info" ;
-	 public static final  String ATTR_EMPH = "band_emph";
 	 public static final String ATTR_INSTAGRAM = "band_instagram";
 	 public static final String ATTR_FACEBOOK = "band_facebook";
 	 public static final String ATTR_YOUTUBE = "band_youtube";

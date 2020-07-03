@@ -23,11 +23,13 @@ public interface IBandService {
 
 	public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 
-	public EntityResult bandCategoryQuery(Integer categoryId);
+	public EntityResult bandByCategoryQuery(Integer categoryId);
 
-	public EntityResult bandbyNameQuery(String bandName);
+	public EntityResult bandByNameQuery(String bandName);
 
-	public EntityResult getBox() throws OntimizeJEERuntimeException;;
+	public EntityResult getBox() throws OntimizeJEERuntimeException;
+
+	public EntityResult bandCommentsQuery(int bandId) throws OntimizeJEERuntimeException;;
 
 	
 	}

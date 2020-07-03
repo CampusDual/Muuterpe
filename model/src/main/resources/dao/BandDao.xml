@@ -62,6 +62,21 @@
                 ]]>
             </Sentence>
 		</Query>
+		<Query id="get_band_comment">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="band_id" prefix="b" />
+			</AmbiguousColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                    	#COLUMNS#
+                    FROM
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_COMMENT bc ON b.BAND_ID = bc.BAND_ID
+                    #WHERE#              
+                ]]>
+            </Sentence>
+		</Query>
 	</Queries>
 </JdbcEntitySetup>
 

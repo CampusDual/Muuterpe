@@ -20,35 +20,40 @@ import com.ontimize.jee.server.rest.ORestController;
 public class BandRestController extends ORestController<IBandService> {
 
 	@Autowired
-	private IBandService bandSrv;
+	private IBandService bandService;
 
 	@Override
 	public IBandService getService() {
-		return this.bandSrv;
+		return this.bandService;
 	}
 	
 	@RequestMapping(value = "/getBandsRecent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandRecent() {
-		return this.bandSrv.bandsRecent();
+		return this.bandService.bandsRecent();
 	}
 	
 	@RequestMapping(value = "/getBandsVisits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandVisits() {
-		return this.bandSrv.bandsMostVisit();
+		return this.bandService.bandsMostVisit();
 	}
 	
 	@RequestMapping(value = "/getBandsByCategory", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandByCategoy(@RequestParam(required = true) Integer categoryId) {
-		return this.bandSrv.bandCategoryQuery(categoryId);
+		return this.bandService.bandByCategoryQuery(categoryId);
 	}
 	
 	@RequestMapping(value = "/getBandsByName", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandByName(@RequestParam(required = true) String bandName) {
-		return this.bandSrv.bandbyNameQuery(bandName);
+		return this.bandService.bandByNameQuery(bandName);
 	}
 	
 	@RequestMapping(value = "/getBandsEmph", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandEmph() {
-		return this.bandSrv.getBox();
+		return this.bandService.getBox();
+	}
+	
+	@RequestMapping(value = "/getBandComment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult getBandComment(@RequestParam(required = true) Integer bandId) {
+		return this.bandService.bandCommentsQuery(bandId);
 	}
 }
