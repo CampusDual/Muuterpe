@@ -17,6 +17,9 @@
 			<AmbiguousColumns>
 				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
+			<FunctionColumns>
+                <FunctionColumn name="CATEGORY" value="STRING_AGG(distinct CATEGORY_NAME, ', ')"/>
+            </FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -24,15 +27,21 @@
                     FROM
                         ${mainschema}.BAND b
                     INNER JOIN ${mainschema}.BAND_VISITS bv ON b.BAND_ID = bv.BAND_ID
+                    INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
+                    INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
+                    GROUP BY b.band_id, b.band_name,bv.visits_num
                     ORDER BY VISITS_NUM DESC
                 ]]>
             </Sentence>
 		</Query>
 		<Query id="band_category">
 			<AmbiguousColumns>
-				<AmbiguousColumn name="category_id" prefix="bc" />
+				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
+			<FunctionColumns>
+                <FunctionColumn name="CATEGORY" value="STRING_AGG(distinct CATEGORY_NAME, ', ')"/>
+            </FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -42,6 +51,7 @@
                     INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
                     INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
+                    GROUP BY b.band_id, b.band_name
                 ]]>
             </Sentence>
 		</Query>
@@ -59,6 +69,21 @@
                     INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
                     GROUP BY BAND_NAME, CATEGORY_NAME;              
+                ]]>
+            </Sentence>
+		</Query>
+		<Query id="get_band_comment">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="band_id" prefix="b" />
+			</AmbiguousColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                    	#COLUMNS#
+                    FROM
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_COMMENT bc ON b.BAND_ID = bc.BAND_ID
+                    #WHERE#              
                 ]]>
             </Sentence>
 		</Query>

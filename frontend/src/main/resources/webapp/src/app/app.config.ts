@@ -15,10 +15,10 @@ export const CONFIG: Config = {
   uuid: 'com.ontimize.web.ngx.jee.seed',
 
   // Title of the app
-  title: 'JEE seed',
+  title: 'Muuterpe',
 
   //  Language of the application.
-  locale: 'en',
+  locale: 'es',
 
   // The service type used (Ontimize REST standart, Ontimize REST JEE
   // or custom implementation) in the whole application.

@@ -21,13 +21,15 @@ public interface IBandService {
 
 	public EntityResult bandsMostVisit() throws OntimizeJEERuntimeException;
 
-	public EntityResult bandVisitsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+	public EntityResult bandByCategoryQuery(Integer categoryId);
 
-	public EntityResult bandCategoryQuery(Integer categoryId);
+	public EntityResult bandByNameQuery(String bandName);
 
-	public EntityResult bandbyNameQuery(String bandName);
+	public EntityResult getBox() throws OntimizeJEERuntimeException;
 
-	public EntityResult getBox() throws OntimizeJEERuntimeException;;
+	public EntityResult bandCommentsQuery(int bandId) throws OntimizeJEERuntimeException;
+
+	public EntityResult bandAndCategoryQuery() throws OntimizeJEERuntimeException;;
 
 	
 	}

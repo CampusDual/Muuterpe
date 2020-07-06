@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4299",
+    "start": "ng serve --port 4200 -o --host localhost",
     "production": "ng build --aot=false --target -prod -href /app/",
     "production-aot": "ontimize-web-ngx production-aot --project-name basicproject-frontend --href /app/"
   },

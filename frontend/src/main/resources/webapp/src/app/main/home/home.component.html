@@ -1,5 +1,32 @@
-<div fxLayout="row" layout-padding fxLayoutAlign="center center">
-  <p>
-    Ontimize web seed application home component
-  </p>
+
+
+   <div class="basic-container" style="width: 90%; margin-right: 5%; margin-left: 5%; margin-top: 50px; margin-bottom: 50px;">
+    <o-grid #grid attr="BANDTABLE" title="BANDAS DESTACADAS" service="bands" entity="getBandsEmph" columns="band_name;CATEGORY"
+   keys="BAND_ID" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="false">
+      <o-grid-item *ngFor="let row of grid.dataArray" rowspan="1">
+      <div>
+        <div fxLayout="row" fxLayoutAlign="space-between end" class="image-container">
+          <div >
+            <img attr="image" src="assets/images/no-image.png" style=" object-fit: cover;">
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center">
+          <span >{{row.band_name }}</span>
+          <span>{{ row.CATEGORY }}</span>
+        </div>
+      </div>
+      </o-grid-item>
+  </o-grid>
+</div> 
+
+<div style="width: 50%; margin-right: 25%; margin-left: 25%; margin-top: 100px; margin-bottom: 50px;">
+  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="getNextEvents" columns="event_name;event_date_time;event_region"
+  refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
+  row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
+   <o-list-item *ngFor="let row of list.dataArray" >
+      <o-list-item-card #item title="{{row.event_name}}" subtitle="{{row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/no-image.png" > </o-list-item-card>
+    </o-list-item>
+</o-list>
 </div>
+
+

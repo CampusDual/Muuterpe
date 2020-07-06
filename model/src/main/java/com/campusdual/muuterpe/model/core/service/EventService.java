@@ -90,7 +90,7 @@ public class EventService implements IEventService {
 	public EntityResult nextEventsQuery() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		List<String> attrList = new ArrayList<String>();
-		attrList.addAll(Arrays.asList(EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME, EventDao.ATTR_EVENT_ID));
+		attrList.addAll(Arrays.asList(EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME, EventDao.ATTR_EVENT_ID, EventDao.ATTR_EVENT_REGION));
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getEventBetweenDates());
 		
 //		Date bbddDate= new Date();
