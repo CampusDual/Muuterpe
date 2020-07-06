@@ -16,5 +16,6 @@
   "ERROR_USER_PASS_INCORRECT": "Invalid username or password.",
   "BANDS": "BANDS",
   "NAME": "NAME",
-  "EVENTS":"EVENTS"
+  "EVENTS":"EVENTS",
+  "HIGHLIGHTS": "HIGHLIGHTS"
 }

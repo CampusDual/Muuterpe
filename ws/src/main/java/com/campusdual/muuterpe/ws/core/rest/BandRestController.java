@@ -37,6 +37,11 @@ public class BandRestController extends ORestController<IBandService> {
 		return this.bandService.bandsMostVisit();
 	}
 	
+	@RequestMapping(value = "/getBandsAndCategory/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult getBandsAndCategory() {
+		return this.bandService.bandAndCategoryQuery();
+	}
+	
 	@RequestMapping(value = "/getBandsByCategory", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getBandByCategoy(@RequestParam(required = true) Integer categoryId) {
 		return this.bandService.bandByCategoryQuery(categoryId);

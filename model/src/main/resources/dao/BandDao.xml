@@ -16,8 +16,10 @@
 		<Query id="band_visits">
 			<AmbiguousColumns>
 				<AmbiguousColumn name="band_id" prefix="b" />
-				<AmbiguousColumn name="category_id" prefix="bc" />
 			</AmbiguousColumns>
+			<FunctionColumns>
+                <FunctionColumn name="CATEGORY" value="STRING_AGG(distinct CATEGORY_NAME, ', ')"/>
+            </FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -28,15 +30,18 @@
                     INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
                     INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
+                    GROUP BY b.band_id, b.band_name,bv.visits_num
                     ORDER BY VISITS_NUM DESC
                 ]]>
             </Sentence>
 		</Query>
 		<Query id="band_category">
 			<AmbiguousColumns>
-				<AmbiguousColumn name="category_id" prefix="bc" />
 				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
+			<FunctionColumns>
+                <FunctionColumn name="CATEGORY" value="STRING_AGG(distinct CATEGORY_NAME, ', ')"/>
+            </FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -46,6 +51,7 @@
                     INNER JOIN ${mainschema}.BAND_CATEGORY bc ON b.BAND_ID = bc.BAND_ID
                     INNER JOIN ${mainschema}.CATEGORY c ON bc.CATEGORY_ID = c.CATEGORY_ID
                     #WHERE#
+                    GROUP BY b.band_id, b.band_name
                 ]]>
             </Sentence>
 		</Query>
