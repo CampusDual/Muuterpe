@@ -11,6 +11,7 @@ import { CONFIG } from './app.config';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
 
 
 // Standard providers...
@@ -23,6 +24,8 @@ export const customProviders: any = [
     ONTIMIZE_MODULES,
     OntimizeWebModule,
     AppRoutingModule,
+    HttpClientModule,
+  
 
   ],
   declarations: [
