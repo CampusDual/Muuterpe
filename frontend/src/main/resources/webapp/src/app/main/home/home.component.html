@@ -1,7 +1,7 @@
 
 
    <div class="basic-container" style="width: 90%; margin-right: 5%; margin-left: 5%; margin-top: 50px; margin-bottom: 50px;">
-    <o-grid #grid class="o-grid-custom" attr="BANDTABLE" title="BANDAS DESTACADAS" service="bands" entity="getBandsEmph" columns="band_name;CATEGORY"
+    <o-grid #grid class="o-grid-custom" attr="BANDTABLE" title="{{'HIGHLIGHT_BANDS' | oTranslate }}" service="bands" entity="getBandsEmph" columns="band_name;CATEGORY"
    keys="BAND_ID" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="false">
       <o-grid-item *ngFor="let row of grid.dataArray" rowspan="1">
       <div>
@@ -20,7 +20,7 @@
 </div> 
 
 <div style="width: 50%; margin-right: 25%; margin-left: 25%; margin-top: 100px; margin-bottom: 50px;">
-  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="getNextEvents" columns="event_name;event_date_time;event_region"
+  <o-list #list class="o-grid-custom" attr="EVENTTABLE" service="events" title="{{'HIGHLIGHT_EVENTS' | oTranslate }}" entity="getNextEvents" columns="event_name;event_date_time;event_region"
   refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
   row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
    <o-list-item *ngFor="let row of list.dataArray" >

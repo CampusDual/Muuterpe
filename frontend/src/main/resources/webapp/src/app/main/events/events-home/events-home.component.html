@@ -1,7 +1,7 @@
 
 
 <div layout-padding style="width: 60%; margin-right: 20%; margin-left: 20%; margin-top: 50px; margin-bottom: 50px;">
-  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="event" columns="event_name;event_date_time;event_region"
+  <o-list #list attr="EVENTTABLE" service="events" title="{{'NEXTEVENTS' | oTranslate }}" entity="event" columns="event_name;event_date_time;event_region"
   refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
   row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
    <o-list-item *ngFor="let row of list.dataArray" >
