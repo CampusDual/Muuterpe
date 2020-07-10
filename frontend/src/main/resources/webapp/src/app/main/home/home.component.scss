@@ -1,3 +1,55 @@
-.bg {
-  background-color: darkred;
+
+.band-item {
+ background-color: white;
+  cursor: pointer;
+  height: 80%;
+  width: 70%;
+  z-index: 3;
+
+  .image-container {
+    height: 50%;
+    width: 100%;
+    padding-top: 190px;
+
+    .mat-divider {
+      margin: 0 12px 30px;
+    }
+
+    .image {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      overflow: hidden; 
+
+      img {
+        height: auto;
+        width: auto;
+        
+      }
+    }
+  }
+
+  .band-data {
+    height: 35%;
+    width: 100%;
+
+    span {
+      font-size: 14px;
+      max-width: 90%;
+      overflow: hidden;
+      padding: 4px 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &.band-name {
+          padding-top: 20px;
+          font-size: 28px;
+          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+          font-weight: bold;
+      }
+
+    }
+  }
 }
+
+

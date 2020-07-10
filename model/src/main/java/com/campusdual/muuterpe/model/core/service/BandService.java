@@ -94,6 +94,8 @@ public class BandService implements IBandService {
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getBandsRencent());
 		return this.daoHelper.query(bandDao, keyMap,
 				Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"), "band_category");
+		
+		
 	}
 
 	private BasicExpression getBandsRencent() {
@@ -138,20 +140,28 @@ public class BandService implements IBandService {
 	@Override
 	public EntityResult getBox() {
 		Integer num = this.getNumberOfBandsFromConfiguration();
-		// if
 		EntityResult bands = this.entityBands();
 		EntityResult bandsEmph = new EntityResult();
-		EntityResult bandsMostVisit = this.bandsMostVisit();
 		EntityResult bandsRecent = this.bandsRecent();
+		EntityResult bandsMostVisit = this.bandsMostVisit();
 
 		bandsEmph.setCode(bands.getCode());
 		bandsEmph.setColumnSQLTypes(bands.getColumnSQLTypes());
 		bandsEmph.setMessage(bands.getMessage());
 
 		for (int i = 0; i < num; i++) {
-			bandsEmph.addRecord(bandsMostVisit.getRecordValues(i));
-			bandsEmph.addRecord(bandsRecent.getRecordValues(i));
+			if (!bandsRecent.getRecordValues(i).isEmpty()) {
+				bandsEmph.addRecord(bandsRecent.getRecordValues(i));
+			}
 		}
+		
+		Integer nBandsRecents = num - bandsRecent.calculateRecordNumber();
+		Integer n = num + nBandsRecents;
+		
+		for (int i = 0; i < n; i++) {
+			bandsEmph.addRecord(bandsMostVisit.getRecordValues(i));
+		}
+		
 		return bandsEmph;
 	}
 
