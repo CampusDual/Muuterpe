@@ -29,7 +29,10 @@ public interface IBandService {
 
 	public EntityResult bandCommentsQuery(int bandId) throws OntimizeJEERuntimeException;
 
-	public EntityResult bandAndCategoryQuery() throws OntimizeJEERuntimeException;;
+	public EntityResult bandAndCategoryQuery() throws OntimizeJEERuntimeException;
+
+    public EntityResult bandSongsQuery(int bandId) throws OntimizeJEERuntimeException;
+	
 
 	
 	}

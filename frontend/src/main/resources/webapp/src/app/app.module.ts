@@ -12,7 +12,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { SafePipe } from './safe.pipe';
 
 // Standard providers...
 // Defining custom providers (if needed)...
@@ -25,11 +26,12 @@ export const customProviders: any = [
     OntimizeWebModule,
     AppRoutingModule,
     HttpClientModule,
-  
-
+    NgxSpinnerModule,
+   
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    SafePipe
   ],
   bootstrap: [
     AppComponent

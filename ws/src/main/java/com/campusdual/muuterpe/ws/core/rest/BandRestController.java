@@ -61,4 +61,8 @@ public class BandRestController extends ORestController<IBandService> {
 	public EntityResult getBandComment(@RequestParam(required = true) Integer bandId) {
 		return this.bandService.bandCommentsQuery(bandId);
 	}
+	@RequestMapping(value = "/getBandSongs/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult getBandSongs(@RequestParam(required = true) Integer bandId) {
+		return this.bandService.bandSongsQuery(bandId);
+	}
 }
