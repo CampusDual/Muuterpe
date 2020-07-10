@@ -45,7 +45,7 @@
                     INNER JOIN ${mainschema}.BAND_EVENT be ON e.EVENT_ID = be.EVENT_ID
                     INNER JOIN ${mainschema}.BAND b ON be.BAND_ID = b.BAND_ID
                     #WHERE#
-                    GROUP BY EVENT_NAME,EVENT_REGION, EVENT_DATE_TIME,BAND_NAME;              
+                    GROUP BY EVENT_NAME,EVENT_REGION, EVENT_DATE_TIME,BAND_NAME,e.EVENT_ID;              
                 ]]>
             </Sentence>
 		</Query>

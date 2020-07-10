@@ -1,5 +1,5 @@
 <div class="basic-container" style="width: 90%; margin-right: 5%; margin-left: 5%; margin-top: 50px; margin-bottom: 50px;">
-  <o-grid #grid attr="BANDTABLE" title="BANDAS" service="bands" entity="getBandsAndCategory" columns="band_name;CATEGORY"
+  <o-grid #grid attr="BANDTABLE" title="{{'BANDS' | oTranslate }}"service="bands" entity="getBandsAndCategory" columns="band_name;CATEGORY"
  keys="BAND_ID" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="true">
     <o-grid-item *ngFor="let row of grid.dataArray" rowspan="1">
     <div>

@@ -45,7 +45,7 @@ public class EventService implements IEventService {
 	public EntityResult eventById(int eventId) {
 		Map<String, Object> keyMap= new HashMap<String, Object>();
 		keyMap.put(EventDao.ATTR_EVENT_ID, eventId);
-		return this.daoHelper.query(eventDao, keyMap, Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_NAME,EventDao.ATTR_EVENT_DATE_TIME ,BandDao.ATTR_NAME), "get_events_details");
+		return this.daoHelper.query(eventDao, keyMap, Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_ID,EventDao.ATTR_EVENT_NAME,EventDao.ATTR_EVENT_DATE_TIME ,BandDao.ATTR_NAME), "get_events_details");
 	}
 	
 	@Override
