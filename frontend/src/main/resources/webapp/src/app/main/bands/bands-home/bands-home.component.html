@@ -1,22 +1,32 @@
 
-<div class="basic-container" style="width: 90%; margin-right: 5%; margin-left: 5%; margin-top: 50px; margin-bottom: 50px;">
-  <o-grid #grid attr="BANDTABLE" title="BANDAS" service="bands" entity="getBandsAndCategory" columns="band_name;CATEGORY"
- keys="BAND_ID" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="true">
-    <o-grid-item *ngFor="let row of grid.dataArray" rowspan="1">
-    <div>
-      <div fxLayout="row" fxLayoutAlign="space-between end" class="image-container">
-        <div >
-          <img attr="image" src="assets/images/bands/{{row.band_name}}.jpg" style=" object-fit: cover;">
+ 
+ <div fxLayout="column" fxFlex="1 1 auto" style="background: repeating-linear-gradient( 44deg,
+      rgba(0, 0, 0, 0) 40px,rgba(0, 0, 0, 0) 48px,#e4e3e3 20px,#e4e3e3 49px);">
+  <o-grid #grid attr="BANDTABLE" service="bands" entity="getBandsAndCategory"
+    columns="band_name;CATEGORY" keys="band_id" query-rows="2" 
+    refresh-button="no" gutter-size="18px" detail-mode="none" show-page-size="false" pagination-controls="false">
+    <o-grid-item *ngFor="let item of grid.dataArray">
+      <div (click)="openDetail(item)" fxLayout="column" fxLayoutAlign="space-evenly center"
+        class="band-item mat-elevation-z1">
+        <div fxLayout="row" fxLayoutAlign="space-between end" class="image-container">
+          <mat-divider fxFlex></mat-divider>
+          <div class="image">
+            <img src="assets/images/bands/{{item.band_name}}.jpg">
+          </div>
+          <mat-divider fxFlex></mat-divider>
         </div>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="start center">
-        <span >{{row.band_name }}</span>
-        <span>{{ row.CATEGORY}}</span>
-      </div>
-    </div>
+
+        <div fxLayout="column" fxLayoutAlign="start center" class="band-data">
+          <span class=" band-name">{{ item.band_name }}</span>
+          <span>{{  item.CATEGORY  }}</span>
+
+          </div>
+        </div>
+
     </o-grid-item>
-</o-grid>
-</div> 
+  </o-grid>
+</div>
+
 
 
             

@@ -30,7 +30,7 @@ public class EventRestController extends ORestController<IEventService> {
 		return this.eventService.nextEventsQuery();
 	}
 	
-	@RequestMapping(value = "/getEventsById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
+	@RequestMapping(value = "/getEventsById/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
 	public EntityResult getEventsById(@RequestParam(required = true) int eventId) {
 		return this.eventService.eventById(eventId);
 	}

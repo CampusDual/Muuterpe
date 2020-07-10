@@ -1,0 +1,16 @@
+<div fxLayoutAlign="center center" fxFlex="40">
+
+  <div class="image">
+    <img src="assets/images/bands/{{data.band_name}}.jpg">
+  </div>
+  <span class="band-name">{{ data.band_name }}</span>
+  <span *ngIf="data.CATEGORY">
+    {{ data.CATEGORY }}</span>
+
+ <ng-container title="VIDEOS" *ngFor="let video of videos">
+    <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="788.54" height="443" type="text/html"
+      [src]="video |safe">
+    </iframe>
+  </ng-container> 
+
+</div>
