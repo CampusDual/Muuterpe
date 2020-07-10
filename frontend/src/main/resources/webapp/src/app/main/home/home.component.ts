@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -8,6 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  videos: string[] = [
+    'SkypZuY6ZvA',
+    '_N5YIGT_R58',
+    'Ld0NDDYXj-c',
+    'uelHwf8o7_U'
+  ];
+  
+  
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute
@@ -15,6 +25,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    
   }
 
   navigate() {

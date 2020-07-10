@@ -1,22 +1,56 @@
-
-<div class="basic-container" style="width: 90%; margin-right: 5%; margin-left: 5%; margin-top: 50px; margin-bottom: 50px;">
-  <o-grid #grid attr="BANDTABLE" title="BANDAS" service="bands" entity="getBandsAndCategory" columns="band_name;CATEGORY"
- keys="BAND_ID" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="true">
+<div class="basic-container"
+  style="width: 90%; margin-right: 5%; margin-left: 5%; margin-top: 50px; margin-bottom: 50px;">
+  <o-grid #grid attr="BANDTABLE" title="BANDAS" service="bands" entity="getBandsAndCategory"
+    columns="band_name;CATEGORY" keys="BAND_ID" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none"
+    quick-filter="true">
     <o-grid-item *ngFor="let row of grid.dataArray" rowspan="1">
-    <div>
-      <div fxLayout="row" fxLayoutAlign="space-between end" class="image-container">
-        <div >
-          <img attr="image" src="assets/images/bands/{{row.band_name}}.jpg" style=" object-fit: cover;">
+      <div>
+        <div fxLayout="row" fxLayoutAlign="space-between end" class="image-container">
+          <div>
+            <img attr="image" src="assets/images/bands/{{row.band_name}}.jpg" style=" object-fit: cover;">
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center">
+          <span>{{row.band_name }}</span>
+          <span>{{ row.CATEGORY}}</span>
         </div>
       </div>
-      <div fxLayout="column" fxLayoutAlign="start center">
-        <span >{{row.band_name }}</span>
-        <span>{{ row.CATEGORY}}</span>
-      </div>
-    </div>
     </o-grid-item>
-</o-grid>
-</div> 
+  </o-grid>
+</div>
+<div>
+  <ng-container title="VIDEOS" *ngFor="let video of videos">
 
+    <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="788.54" height="443" type="text/html"
+      [src]="video |safe">
 
-            
+    </iframe>
+  </ng-container>
+
+</div>
+
+      
+<o-row style="height: 400px">
+  <o-column fxFlex="30" title="GALLERY.NORMAL">
+    <o-gallery [gallery-images]="galleryImages" [gallery-options]="galleryOptions1"></o-gallery>
+  </o-column>
+  <o-column fxFlex="30" title="GALLERY.ONLYIMAGE">
+    <o-gallery [gallery-images]="galleryImages" [gallery-options]="galleryOptions2"></o-gallery>
+  </o-column>
+  <o-column fxFlex="30" title="GALLERY.ONLYIMAGEANDPREVIEW">
+    <o-gallery [gallery-images]="galleryImages" [gallery-options]="galleryOptions3"></o-gallery>
+  </o-column>
+</o-row>
+<o-row style="height: 400px">
+  <o-column fxFlex="30" title="GALLERY.ONLYTHUMB">
+    <o-gallery [gallery-images]="galleryImages" [gallery-options]="galleryOptions4"></o-gallery>
+  </o-column>
+  <o-column fxFlex="30" title="GALLERY.NOTHINGPREV">
+    <o-gallery [gallery-images]="galleryImages" [gallery-options]="galleryOptions5"></o-gallery>
+  </o-column>
+  <o-column fxFlex="30" title="GALLERY.AUTOPLAYPREV">
+    <o-gallery [gallery-images]="galleryImages" [gallery-options]="galleryOptions6"></o-gallery>
+  </o-column>
+</o-row>
+
+    
