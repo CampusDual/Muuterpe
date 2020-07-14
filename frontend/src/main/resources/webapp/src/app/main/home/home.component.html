@@ -1,9 +1,10 @@
 
 <div fxLayout="column" fxFlex="1 1 auto" style="    background: repeating-linear-gradient( 44deg, rgba(0, 0, 0, 0) 40px,
   rgba(0, 0, 0, 0) 48px, #e4e3e3 20px, #e4e3e3 49px);">
+        <div class="div_bandsEmph">
   <o-grid #grid attr="BANDTABLE" title="DESTACADOS" service="bands" entity="getBandsEmph"
-    columns="band_name;CATEGORY" keys="band_id" query-rows="2" 
-    refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="false" style=" margin: 3% 5% 5% 5%; " class="o-grid-home">
+    columns="band_name;CATEGORY" keys="band_id" query-rows="1" 
+    refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="false" style=" margin: 5% 5% 5% 5%; " class="o-grid-home">
     <o-grid-item *ngFor="let item of grid.dataArray">
       <div fxLayout="column" fxLayoutAlign="space-evenly center"
         class="band-item mat-elevation-z1">
@@ -24,19 +25,17 @@
  
     </o-grid-item> 
   </o-grid>
-
-
-<div style="width: 50%; margin-right: 25%; margin-left: 25%; margin-top: 100px; margin-bottom: 50px;">
-  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="getNextEvents" columns="event_name;event_date_time;event_region"
-  refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
-  row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
-   <o-list-item *ngFor="let row of list.dataArray" >
-      <o-list-item-card #item title="{{row.event_name}}" subtitle="{{row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
-    </o-list-item>
-</o-list>
 </div>
 
 
-
+<div class="div_eventsEmph">
+  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="event" columns="event_name;event_date_time;event_region"
+  refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
+  row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
+   <o-list-item *ngFor="let row of list.dataArray" >
+      <o-list-item-card #item title="{{row.event_name}}"  subtitle=" {{ row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
+    </o-list-item>
+</o-list>
+</div>
 
 </div>

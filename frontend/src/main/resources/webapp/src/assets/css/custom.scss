@@ -1,11 +1,48 @@
 .o-grid-home .mat-toolbar-single-row{
+    background-color: rgba(59, 105, 120,0.1);
+    border-bottom: solid; 
+    border-color:rgba(228, 227, 227,0.2);
+
+    span{
+        color: rgba(228, 227, 227,0.8);
+        font-size: 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+
+
+    }
+}
+
+.o-grid .o-grid-container{
+    height: 50%;
+}
+/* .o-grid .mat-figure{
+    
+} */
+.o-grid-home .mat-grid-list{
+    width: 85%;
+    display: flex;
+    align-self: center;
+    padding-top: 10px;
+ 
+}
+
+.div_bandsEmph{
+    margin-top: 30px;
+    background: linear-gradient(to bottom, rgba(59, 105, 120,0.8), rgba(228, 227, 227,0.8));
+    width: 90%;
+    align-self: center;
+}
+
+.div_eventsEmph{
+    margin-top: 200px;
+    width: 100%;
+}
+  
+.mat-toolbar-single-row{
     background-color: rgba(59, 105, 120,0.8);
     border-bottom: solid;
     border-color:rgba(228, 227, 227,0.2);
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-
-
 
     span{
         color: rgba(228, 227, 227,0.8);
@@ -16,16 +53,22 @@
 
     }
 }
-/* .o-grid .mat-figure{
-    
-} */
-.o-grid-home .mat-grid-list{
-    background: linear-gradient(to bottom, rgba(59, 105, 120,0.8), rgba(228, 227, 227,0.8));
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+
+.o-list-container .o-list-content{
+    margin-right: 25%;
+    margin-left: 25%;
+    margin-top: 20px;
+    padding-bottom: 50px;
  
 }
 
-  
-  
+.mat-card-title{
+    padding-top: 20px;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+}
 
+.o-list-item{
+    cursor: pointer;
+}
