@@ -71,6 +71,16 @@ public class BandService implements IBandService {
 				Arrays.asList(BandDao.ATTR_NAME, BandCommentDao.ATTR_ALIAS, BandCommentDao.ATTR_BODY),
 				"get_band_comment");
 	}
+	
+	@Override
+	public EntityResult bandSongsQuery(int bandId) {
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		keyMap.put(BandDao.ATTR_ID, bandId);
+		return this.daoHelper.query(bandDao, keyMap,
+				Arrays.asList(BandDao.ATTR_NAME,"SONG"),
+				"get_band_song");
+		
+	}
 
 	@Override
 	public EntityResult bandInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {

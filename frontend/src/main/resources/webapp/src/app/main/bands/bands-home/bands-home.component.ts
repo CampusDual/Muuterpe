@@ -8,12 +8,14 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './bands-home.component.html',
   styleUrls: ['./bands-home.component.scss']
 })
-export class BandsHomeComponent {
+export class BandsHomeComponent  {
 
   constructor(
     protected dialog: MatDialog,
     protected sanitizer: DomSanitizer
   ) { }
+
+  
 
   videos: string[] = [
     'SkypZuY6ZvA',

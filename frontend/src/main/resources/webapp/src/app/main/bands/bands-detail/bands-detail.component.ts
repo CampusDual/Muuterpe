@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA } from '@angular/material';
+
 
 
 @Component({
@@ -17,12 +18,15 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 
 export class BandsDetailComponent implements OnInit {
 
+
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     protected sanitizer: DomSanitizer
     
   ) { }
   
+ 
   videos: string[] = [
     'SkypZuY6ZvA',
     '_N5YIGT_R58',
@@ -30,12 +34,15 @@ export class BandsDetailComponent implements OnInit {
     'uelHwf8o7_U'
   ];
 
+
+  ngOnInit()  {}
+
+
   images: string[] = [944, 1011, 984].map((n) => 'https://picsum.photos/id/${n}/900/500');
   
   ngOnInit() {
     
   }
-
 
 }
 
