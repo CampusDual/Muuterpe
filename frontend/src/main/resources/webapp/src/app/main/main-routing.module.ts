@@ -13,12 +13,10 @@ export function loadHomeModule() {
 
 export function loadBandsModule() {
   return BandsModule;
-
 }
 
 export function loadEventsModule() {
   return EventsModule;
-
 }
 
 export const routes: Routes = [
