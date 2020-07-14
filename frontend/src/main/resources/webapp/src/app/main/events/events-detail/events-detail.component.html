@@ -17,20 +17,16 @@
         <mat-icon>star</mat-icon>{{ data.event_date_time |  date:'dd/MM/yyyy'}}
       </span>
 
-      <o-grid #grid dattr="EVENTSTABLE" service="events" entity="getEventsById" columns="event_id;band_name;"
-        keys="event_id" query-rows="1" pagination-controls="false" controls="false" refresh-button="no" sort-column=""
-        quick-filter="false" gutter-size="50px" detail-mode="none" show-page-size="false" orderable="false"
-        style="height: auto; width: auto;">
-        <o-grid-item *ngFor="let item of grid.dataArray"
-          style="margin-bottom: auto;margin-top: auto;margin-left: auto;margin-right: auto;">
-          <div fxLayout="column" fxLayoutAlign="start center" class="event-data" style="align-items: center;">
-            <span
-              style="font-size:larger; margin-bottom: 12px; margin-top: 8px; margin-left: 10px; margin-right: 10px; text-align: center;"><b>{{ item.band_name }}</b></span>
-          </div>
-        </o-grid-item>
+      <o-list [static-data]="getEventResult()" title="" quick-filter="false"
+      refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false"
+      selectable="true" dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+      <o-list-item *ngFor="let event of eventResult">
+        <p class=item-hover [routerLink]="['/main/event', event.event_id]" [queryParams]="{id: event.event_id}"
+          href="#">{{ event.band_name}}</p>
+      </o-list-item>
+    </o-list>
+     
 
-
-      </o-grid>
       <span class="event_buy_tickets" style="margin-top: 10px; align-items: center;">
         <o-button attr="flat" (click)="openURL(data)" type="FLAT" label="{{'BUYTICKETS' | oTranslate }}" layout-padding>
         </o-button>

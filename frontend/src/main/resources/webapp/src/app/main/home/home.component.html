@@ -33,9 +33,14 @@
   refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
   row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
    <o-list-item *ngFor="let row of list.dataArray" >
-      <o-list-item-card #item title="{{row.event_name}}"  subtitle=" {{ row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
+      <o-list-item-card (click)="openDetail(row)"  #item title="{{row.event_name}}"  subtitle=" {{ row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
+
     </o-list-item>
 </o-list>
-</div>
+</div> 
+  
+
 
 </div>
+
+
