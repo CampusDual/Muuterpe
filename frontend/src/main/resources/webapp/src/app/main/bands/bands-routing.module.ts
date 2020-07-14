@@ -1,8 +1,7 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BandsHomeComponent } from './bands-home/bands-home.component';
-import { BandsDetailComponent } from './bands-detail/bands-detail.component';
-
+import { SharedModule } from 'app/shared/shared.module';
 
 const routes: Routes = [{
   path: '',
@@ -10,7 +9,7 @@ const routes: Routes = [{
 },
 {
   path:':band_id',
-  component: BandsDetailComponent
+  component:SharedModule
 }
 ];
 

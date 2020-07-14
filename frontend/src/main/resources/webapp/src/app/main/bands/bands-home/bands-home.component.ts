@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BandsDetailComponent } from '../bands-detail/bands-detail.component';
+import { BandsDetailComponent } from '../../../shared/bands-detail/bands-detail.component';
 import { MatDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -14,8 +14,6 @@ export class BandsHomeComponent  {
     protected dialog: MatDialog,
     protected sanitizer: DomSanitizer
   ) { }
-
-  
 
   videos: string[] = [
     'SkypZuY6ZvA',

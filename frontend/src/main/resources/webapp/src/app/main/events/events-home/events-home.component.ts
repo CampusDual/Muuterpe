@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 
-import { EventsDetailComponent } from '../events-detail/events-detail.component';
+import { EventsDetailComponent } from '../../../shared/events-detail/events-detail.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IExpression, FilterExpressionUtils } from 'ontimize-web-ngx';
 @Component({

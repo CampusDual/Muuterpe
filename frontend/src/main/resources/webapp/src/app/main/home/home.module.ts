@@ -3,7 +3,10 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeeventsDetailComponent } from './homeevents-detail/homeevents-detail.component';
+import { BandsDetailComponent } from '../../shared/bands-detail/bands-detail.component';
+import { EventsDetailComponent } from '../../shared/events-detail/events-detail.component';
+import { SafePipe } from 'app/safe.pipe';
+
 
 @NgModule({
   imports: [
@@ -13,7 +16,14 @@ import { HomeeventsDetailComponent } from './homeevents-detail/homeevents-detail
   ],
   declarations: [
     HomeComponent,
-    HomeeventsDetailComponent
+    SafePipe,
+    BandsDetailComponent,
+    EventsDetailComponent
+  ],
+  entryComponents: [
+    BandsDetailComponent,
+    EventsDetailComponent
   ]
 })
 export class HomeModule { }
+ 
