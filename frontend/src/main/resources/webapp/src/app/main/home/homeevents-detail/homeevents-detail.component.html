@@ -1,0 +1,40 @@
+<div fxLayout="column" fxLayoutAlign="space-evenly stretch" class="event-detail" fxFill>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div class="image" style="margin-bottom: 10px;">
+        <img style="height: 150px; width: 175px;" src="assets/images/events/{{data.event_name}}.jpg">
+      </div>
+      <span class="event-name" style="text-align: center; font-size: large;"><b>{{ data.event_name }}</b></span>
+      <mat-divider></mat-divider>
+    </div>
+    <div fxLayout="column" fxFlex="75" class="event-data">
+      <span class="event-name" style="text-align: center; font-size: largeR;"><b>{{'INFO' | oTranslate }} </b></span>
+      <span class="event-address" style="margin-top: 10px;">
+        <mat-icon>home</mat-icon>{{ data.event_address }} {{ data.event_region }}
+      </span>
+      <span class="event_date_time">
+        <mat-icon>star</mat-icon>{{ data.event_date_time |  date:'dd/MM/yyyy'}}
+      </span>
+      <o-grid #grid dattr="EVENTSTABLE" service="events" entity="getEventsById" columns="event_id;band_name;"
+        keys="event_id" query-rows="1" pagination-controls="false" controls="false" refresh-button="no" sort-column=""
+        quick-filter="false" gutter-size="50px" detail-mode="none" show-page-size="false" orderable="false"
+        style="height: auto; width: auto;">
+        <o-grid-item *ngFor="let item of grid.dataArray"
+          style="margin-bottom: auto;margin-top: auto;margin-left: auto;margin-right: auto;" >
+          <div fxLayout="column" fxLayoutAlign="start center" class="event-data" style="align-items: center;">
+            <span
+              style="font-size:larger; margin-bottom: 12px; margin-top: 8px; margin-left: 10px; margin-right: 10px; text-align: center;"><b>{{ item.band_name }}</b></span>
+          </div>
+        </o-grid-item>
+
+
+      </o-grid>
+      <span class="event_buy_tickets" style="margin-top: 10px; align-items: center;">
+        <o-button attr="flat" (click)="openURL(data)" type="FLAT" label="{{'BUYTICKETS' | oTranslate }}" layout-padding>
+        </o-button>
+
+      </span>
+
+    </div>
+  </div>

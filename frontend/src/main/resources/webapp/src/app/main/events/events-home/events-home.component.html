@@ -1,15 +1,15 @@
-<!-- <div layout-padding style="width: 60%; margin-right: 20%; margin-left: 20%; margin-top: 50px; margin-bottom: 50px;">
-  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="event" columns="event_name;event_date_time;event_region"
+<div layout-padding style="width: 60%; margin-right: 20%; margin-left: 20%; margin-top: 50px; margin-bottom: 50px;">
+  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="event" columns="event_id;event_name;event_date_time;event_region;event_address;event_buy_tickets"
   refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
   row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
    <o-list-item *ngFor="let row of list.dataArray" >
-      <o-list-item-card #item title="{{row.event_name}}" subtitle="{{row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
+      <o-list-item-card (click)="openDetail(row)" #item title="{{row.event_name}}" subtitle="{{row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
     </o-list-item>
 </o-list>
 </div>
- -->
 
-<o-form editable-detail="no" show-header="no" layout-align="start stretch" class="event-filters-form" fxFill>
+
+<!-- <o-form editable-detail="no" show-header="no" layout-align="start stretch" class="event-filters-form" fxFill>
   <div fxLayout="column" fxFlex="1 1 auto">
     <o-grid #grid attr="EVENTSTABLE" service="events" entity="event"
       columns="event_id;event_name;event_date_time;event_region;event_address;event_buy_tickets"
@@ -43,4 +43,4 @@
     </o-grid>
   </div>
 
-</o-form>
+</o-form> -->
