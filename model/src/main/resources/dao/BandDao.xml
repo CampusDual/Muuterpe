@@ -18,8 +18,9 @@
 				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
 			<FunctionColumns>
-                <FunctionColumn name="CATEGORY" value="STRING_AGG(distinct CATEGORY_NAME, ', ')"/>
-            </FunctionColumns>
+				<FunctionColumn name="CATEGORY"
+					value="STRING_AGG(distinct CATEGORY_NAME, ', ')" />
+			</FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -40,8 +41,9 @@
 				<AmbiguousColumn name="band_id" prefix="b" />
 			</AmbiguousColumns>
 			<FunctionColumns>
-                <FunctionColumn name="CATEGORY" value="STRING_AGG(distinct CATEGORY_NAME, ', ')"/>
-            </FunctionColumns>
+				<FunctionColumn name="CATEGORY"
+					value="STRING_AGG(distinct CATEGORY_NAME, ', ')" />
+			</FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -84,6 +86,29 @@
                         ${mainschema}.BAND b
                     INNER JOIN ${mainschema}.BAND_COMMENT bc ON b.BAND_ID = bc.BAND_ID
                     #WHERE#              
+                ]]>
+            </Sentence>
+		</Query>
+
+		<Query id="get_band_song">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="band_id" prefix="b" />
+				<AmbiguousColumn name="song_id" prefix="s" />
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="SONG"
+					value="STRING_AGG(SONG_AUDIO, ', ')" />
+			</FunctionColumns>
+			<Sentence>
+                <![CDATA[
+                    SELECT
+                    	#COLUMNS#
+                    FROM
+                        ${mainschema}.BAND b
+                    INNER JOIN ${mainschema}.BAND_SONG bs ON b.BAND_ID = bS.BAND_ID
+                    INNER JOIN ${mainschema}.SONG s ON s.SONG_ID = bs.SONG_ID
+                    #WHERE#  
+                    GROUP BY b.BAND_NAME           
                 ]]>
             </Sentence>
 		</Query>
