@@ -1,4 +1,6 @@
-<div layout-padding style="width: 60%; margin-right: 20%; margin-left: 20%; margin-top: 50px; margin-bottom: 50px;">
+<div style="background: repeating-linear-gradient( 44deg,
+rgba(0, 0, 0, 0) 40px,rgba(0, 0, 0, 0) 48px,#e4e3e3 20px,#e4e3e3 49px);height: 100%;">
+<div layout-padding style="padding-top: 50px; margin-bottom: 50px; ">
   <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="event" columns="event_id;event_name;event_date_time;event_region;event_address;event_buy_tickets"
   refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
   row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
@@ -8,39 +10,3 @@
 </o-list>
 </div>
 
-
-<!-- <o-form editable-detail="no" show-header="no" layout-align="start stretch" class="event-filters-form" fxFill>
-  <div fxLayout="column" fxFlex="1 1 auto">
-    <o-grid #grid attr="EVENTSTABLE" service="events" entity="event"
-      columns="event_id;event_name;event_date_time;event_region;event_address;event_buy_tickets"
-      visible-columns="event_id;event_name;event_date_time;event_region" keys="event_id" query-rows="8"
-      pagination-controls="yes" refresh-button="no" title="{{'NEXTEVENTS' | oTranslate }}" quick-filter="false"
-      gutter-size="50px" detail-mode="none">
-      <o-grid-item *ngFor="let item of grid.dataArray">
-        <div (click)="openDetail(item)" fxLayout="column" fxLayoutAlign="space-evenly center"
-          class="event-item mat-elevation-z1">
-          <div fxLayout="row" fxLayoutAlign="space-between end" class="image-container">
-            <mat-divider fxFlex></mat-divider>
-            <div class="image">
-              <img src="assets/images/events/{{item.event_name}}.jpg">
-            </div>
-            <mat-divider fxFlex></mat-divider>
-          </div>
-
-          <div fxLayout="column" fxLayoutAlign="start center" class="event-data" style="align-items: center;">
-            <span
-              style="font-size:larger; margin-bottom: 12px; margin-top: 8px; margin-left: 10px; margin-right: 10px; text-align: center;"><b>{{ item.event_name }}</b></span>
-            <div style="margin-bottom: 5px;">
-              <span style="font-size:medium;text-align: center;">{{ item.event_region }}</span>
-            </div>
-            <div style="margin-bottom: 20px;">
-              <span style="font-size: medium;text-align: center;">{{item.event_date_time |  date:'dd/MM/yyyy'}}</span>
-            </div>
-
-          </div>
-        </div>
-      </o-grid-item>
-    </o-grid>
-  </div>
-
-</o-form> -->

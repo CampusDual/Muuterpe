@@ -8,16 +8,22 @@ import { SafePipe } from 'app/safe.pipe';
 
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     OntimizeWebModule,
     BandsRoutingModule
+   
+   
   ],
   declarations: [
     BandsHomeComponent,
     BandsDetailComponent,
-    SafePipe
+    SafePipe,
+  
+   
   ]
 })
 export class BandsModule {}

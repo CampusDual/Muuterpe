@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
 // Standard providers...
 // Defining custom providers (if needed)...
 export const customProviders: any = [
@@ -22,7 +23,10 @@ export const customProviders: any = [
     ONTIMIZE_MODULES,
     OntimizeWebModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
+   
+   
+    
   ],
   declarations: [
     AppComponent

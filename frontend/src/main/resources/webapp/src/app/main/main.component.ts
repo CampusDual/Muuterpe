@@ -8,6 +8,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent implements OnInit {
 
   constructor() { }
@@ -16,3 +17,4 @@ export class MainComponent implements OnInit {
   }
 
 }
+
