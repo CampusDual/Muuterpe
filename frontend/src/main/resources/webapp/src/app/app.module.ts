@@ -23,10 +23,7 @@ export const customProviders: any = [
     ONTIMIZE_MODULES,
     OntimizeWebModule,
     AppRoutingModule,
-    HttpClientModule
-   
-   
-    
+    HttpClientModule   
   ],
   declarations: [
     AppComponent

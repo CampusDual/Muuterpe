@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { OntimizeWebModule } from "ontimize-web-ngx";
 import { BandsRoutingModule } from './bands-routing.module';
 import { BandsHomeComponent } from './bands-home/bands-home.component';
-import { BandsDetailComponent } from './bands-detail/bands-detail.component';
+import { SharedModule } from 'app/shared/shared.module';
+import { BandsDetailComponent } from 'app/shared/bands-detail/bands-detail.component';
 import { SafePipe } from 'app/safe.pipe';
-
-
 
 
 
@@ -14,16 +13,17 @@ import { SafePipe } from 'app/safe.pipe';
   imports: [
     CommonModule,
     OntimizeWebModule,
-    BandsRoutingModule
-   
-   
+    BandsRoutingModule,
+    SharedModule
   ],
   declarations: [
     BandsHomeComponent,
     BandsDetailComponent,
-    SafePipe,
-  
-   
+    SafePipe
+  ],
+  entryComponents: [
+    BandsDetailComponent
   ]
+  
 })
 export class BandsModule {}

@@ -52,4 +52,36 @@
   }
 }
 
+.band-detail {
+    .image {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+
+  
+      img {
+        height: auto;
+        width: auto;
+      }
+    }
+  
+    .band-name {
+      font-size: 18px;
+      padding-top: 6px;
+    }
+    .band-data {
+      span {
+        align-items: center;
+        display: flex;
+        padding-top: 4px;
+  
+        .mat-icon {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+  
+
 
