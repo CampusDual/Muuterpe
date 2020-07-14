@@ -3,9 +3,8 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { BandsDetailComponent } from '../../shared/bands-detail/bands-detail.component';
 import { EventsDetailComponent } from '../../shared/events-detail/events-detail.component';
-import { SafePipe } from 'app/safe.pipe';
+import { BandsDetailComponent } from 'app/shared/bands-detail/bands-detail.component';
 
 
 @NgModule({
@@ -15,13 +14,11 @@ import { SafePipe } from 'app/safe.pipe';
     HomeRoutingModule
   ],
   declarations: [
-    HomeComponent,
-    SafePipe,
-    BandsDetailComponent,
-    EventsDetailComponent
+    HomeComponent
+
   ],
   entryComponents: [
-    BandsDetailComponent,
+BandsDetailComponent,
     EventsDetailComponent
   ]
 })

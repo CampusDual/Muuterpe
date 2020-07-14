@@ -6,8 +6,6 @@ import { EventsHomeComponent } from './events-home/events-home.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { EventsDetailComponent } from 'app/shared/events-detail/events-detail.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -16,8 +14,7 @@ import { EventsDetailComponent } from 'app/shared/events-detail/events-detail.co
     SharedModule
   ],
   declarations: [
-    EventsHomeComponent,
-    EventsDetailComponent
+    EventsHomeComponent
   ],
   entryComponents: [
     EventsDetailComponent

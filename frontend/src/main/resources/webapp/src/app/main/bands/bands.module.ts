@@ -5,8 +5,6 @@ import { BandsRoutingModule } from './bands-routing.module';
 import { BandsHomeComponent } from './bands-home/bands-home.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { BandsDetailComponent } from 'app/shared/bands-detail/bands-detail.component';
-import { SafePipe } from 'app/safe.pipe';
-
 
 
 @NgModule({
@@ -17,9 +15,7 @@ import { SafePipe } from 'app/safe.pipe';
     SharedModule
   ],
   declarations: [
-    BandsHomeComponent,
-    BandsDetailComponent,
-    SafePipe
+    BandsHomeComponent
   ],
   entryComponents: [
     BandsDetailComponent
