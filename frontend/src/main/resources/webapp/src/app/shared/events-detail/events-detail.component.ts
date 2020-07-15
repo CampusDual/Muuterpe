@@ -15,26 +15,26 @@ export class EventsDetailComponent implements OnInit {
 
   public parametro: any;
   public eventResult: IEventModel;
+  public arrayEvent :any[];
  
   constructor(
    @Inject(MAT_DIALOG_DATA) public data: any,
      protected sanitizer: DomSanitizer,
      private _route: ActivatedRoute,
-        private eventService: EventService
+      private eventService: EventService
   ) { }
  
  
- 
+
   ngOnInit() {
-      console.log('ngOnInit ID =>', Number.parseInt(this.data.event_id));
-      this.ngOnStartEvent(Number.parseInt(this.data.event_id));
+  this.ngOnStartEvent(this.data.event_id);
   }
   
   ngOnStartEvent(id: number) {
-    console.log('ngOnStartEvent ID =>', id);
     this.eventService.getEventsData(id).subscribe(
         (eventData: any) => {
             if (eventData['data']) {
+              console.log('ngOnStartEvent ID22 =>', id);
                 if (eventData['data'].length > 0) {
                   this.eventResult = eventData['data'][0];
                 } else {
@@ -47,7 +47,7 @@ export class EventsDetailComponent implements OnInit {
 }
 
 getEventResult(){
-  console.log('Contenido del evento', this.eventResult);
+  this.arrayEvent = Array.of(this.eventResult); 
   return this.eventResult;
 }
 
@@ -61,4 +61,6 @@ getEventResult(){
     }
 
   }
+
+
 }

@@ -22,22 +22,18 @@ export class EventService extends OntimizeEEService {
         });
     }
     getEventsData(id: number) {
-        console.log('getEventsData ID =>', id);
         const url = CONFIG.apiEndpoint + '/' + 'events/getEventsById/search';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
-
-                eventId: id
-
+                event_id: id
             },
-            columns: ['event_id', 'band_name', 'event_region', 'event_name', 'event_date_time'],
+            columns: ["BAND", "event_region", "event_name", "event_date_time"],
             sqltypes: {
 
-                "event_id": 4,
-                "band_name": 12, 
+                "BAND": 12,
                 "event_region": 12,
                 "event_name": 12,
                 "event_date_time": 91
@@ -45,18 +41,13 @@ export class EventService extends OntimizeEEService {
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
-
             self.httpClient.post(url, body, options).subscribe(function (resp) {
                 self.parseSuccessfulQueryResponse(resp, _innerObserver);
-
             }, function (error) {
                 self.parseUnsuccessfulQueryResponse(error, _innerObserver);
             }, function () { return _innerObserver.complete(); });
         });
         return dataObservable.pipe(share());
     }
-
-
-
 
 }

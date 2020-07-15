@@ -17,15 +17,14 @@
         <mat-icon>star</mat-icon>{{ data.event_date_time |  date:'dd/MM/yyyy'}}
       </span>
 
-<!--       <o-list [static-data]="getEventResult()" title="" quick-filter="false"
-      refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false"
-      selectable="true" dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
-      <o-list-item *ngFor="let event of eventResult">
-        <p class=item-hover [routerLink]="['/main/events', event.event_id]" [queryParams]="{eventId: event.event_id}"
-          href="#">{{event.band_name}}</p>
-      </o-list-item>
-    </o-list> -->
-     
+      <o-grid [static-data]="getEventResult()" title="" quick-filter="false" refresh-button="false"
+        insert-button="false" insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
+        detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+        <o-grid-item *ngIf="eventResult">
+          <p class=item-hover [routerLink]="['/main/event', eventResult.event_id]">{{eventResult.BAND}}</p>
+        </o-grid-item>
+      </o-grid>
+
 
       <span class="event_buy_tickets" style="margin-top: 10px; align-items: center;">
         <o-button attr="flat" (click)="openURL(data)" type="FLAT" label="{{'BUYTICKETS' | oTranslate }}" layout-padding>

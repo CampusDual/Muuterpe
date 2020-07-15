@@ -14,6 +14,5 @@ public interface IEventService {
 	public EntityResult nextEventsQuery();
 	public EntityResult eventByStateQuery(String stateName);
 	public EntityResult eventByDateQuery(String eventDate);
-	public EntityResult eventById(int eventId);
-	 
+	public EntityResult eventByIdQuery(Map<String, Object> body);
 }

@@ -5,13 +5,15 @@ import { EventsRoutingModule } from './events-routing.module';
 import { EventsHomeComponent } from './events-home/events-home.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { EventsDetailComponent } from 'app/shared/events-detail/events-detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     OntimizeWebModule,
     EventsRoutingModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     EventsHomeComponent
