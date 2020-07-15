@@ -36,6 +36,10 @@
 				<AmbiguousColumn name="band_id" prefix="b" />
 				<AmbiguousColumn name="event_id" prefix="e" />
 			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="BAND"
+					value="STRING_AGG(distinct BAND_NAME, ', ')" />
+			</FunctionColumns>
 			<Sentence>
                 <![CDATA[
                     SELECT
@@ -45,7 +49,7 @@
                     INNER JOIN ${mainschema}.BAND_EVENT be ON e.EVENT_ID = be.EVENT_ID
                     INNER JOIN ${mainschema}.BAND b ON be.BAND_ID = b.BAND_ID
                     #WHERE#
-                    GROUP BY EVENT_NAME,EVENT_REGION, EVENT_DATE_TIME,BAND_NAME,e.EVENT_ID;              
+                    GROUP BY EVENT_NAME,EVENT_REGION, EVENT_DATE_TIME,e.EVENT_ID;              
                 ]]>
             </Sentence>
 		</Query>

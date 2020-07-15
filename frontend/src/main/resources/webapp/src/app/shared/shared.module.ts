@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { BandsDetailComponent } from './bands-detail/bands-detail.component';
 import { EventsDetailComponent } from './events-detail/events-detail.component';
 import { SafePipe } from 'app/safe.pipe';
-
-
-
+import { RouterModule } from '@angular/router';
+ 
 @NgModule({
   imports: [
-    OntimizeWebModule
+    OntimizeWebModule,
+    RouterModule 
   ],
   declarations: [
     BandsDetailComponent,
@@ -19,8 +19,7 @@ import { SafePipe } from 'app/safe.pipe';
   exports: [
     CommonModule,
     BandsDetailComponent,
-    EventsDetailComponent,
-    SafePipe
+    EventsDetailComponent
   ]
 })
 export class SharedModule { }

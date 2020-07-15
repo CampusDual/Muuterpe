@@ -1,10 +1,8 @@
 import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material';
-
-
-import { EventsDetailComponent } from '../../../shared/events-detail/events-detail.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IExpression, FilterExpressionUtils } from 'ontimize-web-ngx';
+import { EventsDetailComponent } from 'app/shared/events-detail/events-detail.component';
 @Component({
   selector: 'app-events-home',
   templateUrl: './events-home.component.html',

@@ -1,8 +1,11 @@
 package com.campusdual.muuterpe.ws.core.rest;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,8 +34,8 @@ public class EventRestController extends ORestController<IEventService> {
 	}
 	
 	@RequestMapping(value = "/getEventsById/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
-	public EntityResult getEventsById(@RequestParam(required = true) int eventId) {
-		return this.eventService.eventById(eventId);
+	public EntityResult getEventsById(@RequestBody Map<String, Object> body) {
+		return this.eventService.eventByIdQuery(body);
 	}
 	
 	@RequestMapping(value = "/getEventsByState", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
