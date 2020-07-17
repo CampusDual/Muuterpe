@@ -31,7 +31,9 @@ public interface IBandService {
 
 	public EntityResult bandAndCategoryQuery() throws OntimizeJEERuntimeException;
 
-	public EntityResult bandSongsQuery(int bandId);
+	public EntityResult bandSongsQuery(Map<String, Object> body);
+
+	public EntityResult bandImageQuery(Map<String, Object> body);
 
 	
 	}

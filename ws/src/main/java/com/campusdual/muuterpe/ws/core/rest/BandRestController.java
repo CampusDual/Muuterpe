@@ -1,10 +1,12 @@
 package com.campusdual.muuterpe.ws.core.rest;
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,7 +65,15 @@ public class BandRestController extends ORestController<IBandService> {
 	}
 	
 	@RequestMapping(value = "/getBandSongs/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
-	public EntityResult getBandSongs(@RequestParam(required = true) Integer bandId) {
-		return this.bandService.bandSongsQuery(bandId);
+	public EntityResult getBandSongs(@RequestBody Map<String, Object> body) {
+		return this.bandService.bandSongsQuery(body);
 	}
+	
+	
+	@RequestMapping(value = "/getBandImage/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult bandImageQuery(@RequestBody Map<String, Object> body) {
+		return this.bandService.bandImageQuery(body);
+	}
+	
+	
 }

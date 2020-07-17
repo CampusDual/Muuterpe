@@ -21,7 +21,7 @@ export class EventsDetailComponent implements OnInit {
    @Inject(MAT_DIALOG_DATA) public data: any,
      protected sanitizer: DomSanitizer,
      private _route: ActivatedRoute,
-      private eventService: EventService
+    private eventService: EventService
   ) { }
  
  
@@ -34,9 +34,8 @@ export class EventsDetailComponent implements OnInit {
     this.eventService.getEventsData(id).subscribe(
         (eventData: any) => {
             if (eventData['data']) {
-              console.log('ngOnStartEvent ID22 =>', id);
                 if (eventData['data'].length > 0) {
-                  this.eventResult = eventData['data'][0];
+                  this.eventResult = eventData['data'];
                 } else {
                     this.eventResult = null;
                 }

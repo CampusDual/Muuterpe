@@ -20,8 +20,8 @@ export class EventsHomeComponent   {
 
   public openDetail(data: any): void {
     this.dialog.open(EventsDetailComponent, {
-      height: '330px',
-      width: '520px',
+      height: '50%',
+      width: '50%',
       data: data
     });
   }

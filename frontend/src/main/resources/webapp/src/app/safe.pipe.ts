@@ -7,7 +7,6 @@ export class SafePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
     transform(video: string) {
         const apiKey: string = 'AIzaSyAu6w84GsPQm5U2wzapo7aShRjDjlnQnwk';
-        console.log(video);
         let url = 'https://www.youtube.com/embed/' + video + '?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0';
 
 
