@@ -30,10 +30,10 @@ export class EventService extends OntimizeEEService {
             filter: {
                 event_id: id
             },
-            columns: ["BAND", "event_region", "event_name", "event_date_time"],
+            columns: ["band_name", "event_region", "event_name", "event_date_time"],
             sqltypes: {
 
-                "BAND": 12,
+                "band_name": 12,
                 "event_region": 12,
                 "event_name": 12,
                 "event_date_time": 91

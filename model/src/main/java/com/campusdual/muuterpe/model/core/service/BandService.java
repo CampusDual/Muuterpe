@@ -15,6 +15,7 @@ import com.campusdual.muuterpe.model.core.dao.BandCommentDao;
 import com.campusdual.muuterpe.model.core.dao.BandDao;
 import com.campusdual.muuterpe.model.core.dao.CategoryDao;
 import com.campusdual.muuterpe.model.core.dao.ConfigurationDao;
+import com.campusdual.muuterpe.model.core.dao.SongDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.db.SQLStatementBuilder;
 import com.ontimize.db.SQLStatementBuilder.BasicExpression;
@@ -51,8 +52,8 @@ public class BandService implements IBandService {
 	@Override
 	public EntityResult bandAndCategoryQuery() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
-				"band_category");
+		return this.daoHelper.query(bandDao, keyMap,
+				Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY", BandDao.ATTR_INFO), "band_category");
 	}
 
 	@Override
@@ -71,15 +72,14 @@ public class BandService implements IBandService {
 				Arrays.asList(BandDao.ATTR_NAME, BandCommentDao.ATTR_ALIAS, BandCommentDao.ATTR_BODY),
 				"get_band_comment");
 	}
-	
+
 	@Override
-	public EntityResult bandSongsQuery(int bandId) {
+	public EntityResult bandSongsQuery(Map<String, Object> body) {
+		Object filter = body.get("filter");
+		Integer band_id = (Integer) ((Map<?, ?>) filter).get("band_id");
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		keyMap.put(BandDao.ATTR_ID, bandId);
-		return this.daoHelper.query(bandDao, keyMap,
-				Arrays.asList(BandDao.ATTR_NAME,"SONG"),
-				"get_band_song");
-		
+		keyMap.put(BandDao.ATTR_ID, band_id);
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(SongDao.ATTR_SONG_AUDIO), "get_band_song");
 	}
 
 	@Override
@@ -102,10 +102,8 @@ public class BandService implements IBandService {
 	public EntityResult bandsRecent() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getBandsRencent());
-		return this.daoHelper.query(bandDao, keyMap,
-				Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"), "band_category");
-		
-		
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
+				"band_category");
 	}
 
 	private BasicExpression getBandsRencent() {
@@ -135,8 +133,8 @@ public class BandService implements IBandService {
 	@Override
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		return this.daoHelper.query(bandDao, keyMap,
-				Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"), "band_visits");
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
+				"band_visits");
 	}
 
 	private Integer getNumberOfBandsFromConfiguration() {
@@ -164,14 +162,14 @@ public class BandService implements IBandService {
 				bandsEmph.addRecord(bandsRecent.getRecordValues(i));
 			}
 		}
-		
+
 		Integer nBandsRecents = num - bandsRecent.calculateRecordNumber();
 		Integer n = num + nBandsRecents;
-		
+
 		for (int i = 0; i < n; i++) {
 			bandsEmph.addRecord(bandsMostVisit.getRecordValues(i));
 		}
-		
+
 		return bandsEmph;
 	}
 
@@ -179,6 +177,22 @@ public class BandService implements IBandService {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		EntityResult bands = this.bandQuery(keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
 		return bands;
+	}
+
+	public EntityResult bandImageQuery(Map<String, Object> body) {
+		Map<String, Object> filter = (Map<String, Object>) body.get("filter");
+		String band_name = (String) filter.get("band_name");
+		StringBuilder builder = new StringBuilder();
+		builder.append("%").append(band_name).append("_").append("%");
+		
+		BasicField band_image_path_bf = new BasicField(ConfigurationDao.ATTR_BAND_IMG);
+		BasicExpression bexp = new BasicExpression(band_image_path_bf, BasicOperator.LIKE_OP, builder.toString());
+		
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, bexp);
+		
+		return this.daoHelper.query(this.configurationDao, keyMap,
+				Arrays.asList(ConfigurationDao.ATTR_BAND_IMG));
 	}
 
 }
