@@ -1,11 +1,14 @@
 
-<o-column attr="container" title="{{data.band_name}}" layout-align="center stretch" elevation="1" appearance="none">
+<!-- <o-column attr="container" title="{{data.band_name}}" layout-align="center stretch" elevation="1" appearance="none">
   <div style="align-content: center; margin-left:50px;" >
     <img src="assets/images/bands/beegees1.jpg">
   </div>
-</o-column>  
+</o-column> -->  
 
 
+  
+
+<slideshow [imageUrls]="arrayImages" ></slideshow>
 
 <o-grid title="BAND DETAIL" quick-filter="false" refresh-button="false">
   <o-grid-item class="band-name">{{ data.band_name }}</o-grid-item>
