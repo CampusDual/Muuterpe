@@ -1,9 +1,15 @@
 import { Component, OnInit, Inject, ViewChild, SystemJsNgModuleLoader } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA } from '@angular/material';
+
 import { IImage } from 'ng-simple-slideshow';
 
-/* declare var fs: any; */
+import { ActivatedRoute } from '@angular/router';
+import { BandService } from 'app/main/services/band.services';
+import { IBandModel } from '../models/iband.model';
+
+
+
 
 @Component({
   selector: 'app-bands-detail',
@@ -12,16 +18,25 @@ import { IImage } from 'ng-simple-slideshow';
 })
 
 export class BandsDetailComponent implements OnInit {
-   
+
+
+
+  public parametro: any;
+  public bandResultName: IBandModel;
+  public bandResult: IBandModel;
+
+  public alias: String;
+
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    protected sanitizer: DomSanitizer
+    protected sanitizer: DomSanitizer,
+    private _route: ActivatedRoute,
+    private bandService: BandService
 
   ) { }
 
-  alias:string;
-  /*  fs = require('fs');
-   files : String = this.fs.readdirSync('/assets/images/bands/slider/'); */
+
 
   public arrayImages:(string | IImage ) [] = [
    /*  { url: 'assets/images/bands/BEEGEES1.jpg'},
@@ -31,40 +46,56 @@ export class BandsDetailComponent implements OnInit {
   ];
   showArrows:boolean = true;
   showDots:boolean = true;
-  autoPlay:boolean = true;
+  autoPlay:boolean = true;  
 
-
-  videos: string[] = [
-    'SkypZuY6ZvA',
-    '_N5YIGT_R58',
-    'Ld0NDDYXj-c',
-    'uelHwf8o7_U'
-  ];
-
+ 
   ngOnInit() {
-  
     this.alias = this.data.band_name.replace(/\s/g,"");
-    console.log('bandname ' +this.alias);
-   
-   /*  for(let i = 0; i < this.files.length; i++){
-      console.log('hola'  +this.files[i]);
-      if(this.files[i].match('assets/images/bands/slider/'+this.alias)){
-        this.arrayImages.push(this.files[i]);
-      }
-    } */
+    this.ngOnStartBandId(this.data.band_id);
+    this.ngOnStartBandName(this.alias);
+    }
     
-     for( let i = 1; i < 6; i++){
-     if('assets/images/bands/slider/' + this.alias + i +'.jpg'.includes(this.alias+i)){
-          this.arrayImages.push('assets/images/bands/slider/' + this.alias + i + '.jpg');
-        } else{break;}
-       
-    } 
-    
-    setTimeout(() => {
-      this.arrayImages;
-    }, 2000);
+    ngOnStartBandId(id: number) {
+      this.bandService.getBandDataId(id).subscribe(
+          (bandData: any) => {
+              if (bandData['data']) {
+                  if (bandData['data'].length > 0) {
+                    this.bandResult = bandData['data'];
+                  } else {
+                      this.bandResult = null;
+                  }
+              }
+          },
+          err => console.error(err)
+      );
   }
   
+  getBandResult(){
+    return this.bandResult;
+  }
+
+  ngOnStartBandName(id: String) {
+    this.bandService.getBandDataName(id).subscribe(
+        (bandDataName: any) => {
+            if (bandDataName['data']) {
+                if (bandDataName['data'].length > 0) {
+                  this.bandResultName = bandDataName['data'];
+                } else {
+                    this.bandResultName = null;
+                }
+            }
+        },
+        err => console.error(err)
+    );
+}
+
+getBandResultName(){
+  console.log(this.bandResultName);
+  return this.bandResultName;
+}
+
+
+
 }
 
 

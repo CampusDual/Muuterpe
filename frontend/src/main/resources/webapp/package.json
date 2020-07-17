@@ -26,6 +26,8 @@
     "@angular/platform-server": "6.1.10",
     "@angular/router": "6.1.10",
     "@angular/upgrade": "6.1.10",
+    "@mdi/js": "^5.3.45",
+    "@mdi/react": "^1.4.0",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ngx-translate/core": "10.0.2",
     "@ngx-translate/http-loader": "3.0.1",

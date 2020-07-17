@@ -17,13 +17,13 @@
         <mat-icon>star</mat-icon>{{ data.event_date_time |  date:'dd/MM/yyyy'}}
       </span>
 
-      <o-grid [static-data]="getEventResult()" title="" quick-filter="false" refresh-button="false"
+      <o-list [static-data]="getEventResult()" title="" quick-filter="false" controls="false" refresh-button="false"
         insert-button="false" insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
         detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
-        <o-grid-item *ngIf="eventResult">
-          <p class=item-hover [routerLink]="['/main/event', eventResult.event_id]">{{eventResult.BAND}}</p>
-        </o-grid-item>
-      </o-grid>
+        <o-list-item *ngFor="let item of eventResult">
+          <p class=item-hover [routerLink]="['/main/event', eventResult.event_id]">{{item.band_name}}</p>
+        </o-list-item>
+      </o-list>
 
 
       <span class="event_buy_tickets" style="margin-top: 10px; align-items: center;">

@@ -22,7 +22,6 @@ import com.ontimize.db.SQLStatementBuilder;
 import com.ontimize.db.SQLStatementBuilder.BasicExpression;
 import com.ontimize.db.SQLStatementBuilder.BasicField;
 import com.ontimize.db.SQLStatementBuilder.BasicOperator;
-import com.ontimize.gui.table.TableSorter.Filter;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
 @Service("EventService")
@@ -44,9 +43,11 @@ public class EventService implements IEventService {
 	
 	@Override
 	public EntityResult eventByIdQuery(Map<String, Object> body) {
+		Object filter = body.get("filter");
+		Integer event_id= (Integer) ((Map<?,?>) filter).get("event_id");
 		Map<String, Object> keyMap= new HashMap<String, Object>();
-		keyMap.put(EventDao.ATTR_EVENT_ID, body.get("filter"));
-		return this.daoHelper.query(eventDao, (Map<?, ?>) keyMap.get("event_id"), Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_ID, EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME ,"BAND"), "get_events_details");
+		keyMap.put(EventDao.ATTR_EVENT_ID, event_id);
+		return this.daoHelper.query(eventDao, (Map<?, ?>) keyMap, Arrays.asList(EventDao.ATTR_EVENT_REGION,EventDao.ATTR_EVENT_ID, EventDao.ATTR_EVENT_NAME, EventDao.ATTR_EVENT_DATE_TIME ,BandDao.ATTR_NAME), "get_events_details");
 	}
 	
 	@Override
