@@ -5,11 +5,14 @@ import { BandsDetailComponent } from './bands-detail/bands-detail.component';
 import { EventsDetailComponent } from './events-detail/events-detail.component';
 import { SafePipe } from 'app/safe.pipe';
 import { RouterModule } from '@angular/router';
- 
+import { SlideshowModule } from 'ng-simple-slideshow';
+
+
 @NgModule({
   imports: [
     OntimizeWebModule,
-    RouterModule 
+    RouterModule ,
+    SlideshowModule
   ],
   declarations: [
     BandsDetailComponent,

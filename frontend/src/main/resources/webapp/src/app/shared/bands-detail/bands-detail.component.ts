@@ -1,9 +1,14 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, SystemJsNgModuleLoader } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA } from '@angular/material';
+
+import { IImage } from 'ng-simple-slideshow';
+
 import { ActivatedRoute } from '@angular/router';
 import { BandService } from 'app/main/services/band.services';
 import { IBandModel } from '../models/iband.model';
+
+
 
 
 @Component({
@@ -13,6 +18,8 @@ import { IBandModel } from '../models/iband.model';
 })
 
 export class BandsDetailComponent implements OnInit {
+
+
 
   public parametro: any;
   public bandResultName: IBandModel;
@@ -31,6 +38,17 @@ export class BandsDetailComponent implements OnInit {
 
 
 
+  public arrayImages:(string | IImage ) [] = [
+   /*  { url: 'assets/images/bands/BEEGEES1.jpg'},
+    { url: 'assets/images/bands/BEEGEES2.jpg'},
+    { url: 'assets/images/bands/BEE GEES3.jpg'},
+    { url: 'assets/images/bands/AMY WINEHOUSE.jpg' } */
+  ];
+  showArrows:boolean = true;
+  showDots:boolean = true;
+  autoPlay:boolean = true;  
+
+ 
   ngOnInit() {
     this.alias = this.data.band_name.replace(/\s/g,"");
     this.ngOnStartBandId(this.data.band_id);
@@ -75,6 +93,7 @@ getBandResultName(){
   console.log(this.bandResultName);
   return this.bandResultName;
 }
+
 
 
 }
