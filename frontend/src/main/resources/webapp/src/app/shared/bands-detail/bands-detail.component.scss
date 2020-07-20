@@ -1,28 +1,27 @@
 .iconos{
   display: block;
   float: right;
-
+ 
   img{
     padding-right: 10px;
   }
 }
-
+ 
 .band_detail {
   margin: auto;
-
-
+ 
   h1{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     font-size: 50px;
     margin-top: 10px;
   }
-
+ 
   .band_slider{
     margin-bottom: 40px;
     float: left;
     width: 50%;
-
+ 
     img{
       object-fit: cover;
       display: block;
@@ -31,7 +30,7 @@
       width: 85%;
     }
   }
-
+ 
   .band_text{
     font-family: "Lucida Console", Courier, monospace;
     font-size: 16px;
@@ -39,9 +38,57 @@
     line-height: 2;
     padding-right: 2%;
   }
-
+ 
   
 }
+.comments{
+  margin-top:20px;
+  margin-bottom:20px;
 
+  h2{
+    font-family: "Lucida Console", Courier, monospace;
+    margin-top: 10px;
+  }
+
+}
+.olist-item{
+  margin-top:60px;
+  margin-bottom:60px;
+}
+.bandcomment-item {
+  background-color: white;
+   cursor: pointer;
+   height: 90%;
+   width: 70%;
+   z-index: 3;
+   margin-top: 40px;
+   margin-bottom: 40px;
+   align-items: center;
+
+   h3{
+    font-family: "Lucida Console", Courier, monospace;
+   }
+  
+   .comment-alias{
+    margin-right: 100px;
+    margin-left: 30px;
+   }
+  
+   .comment-body{
+    width:100%;
+    margin-right: 80px;
+    margin-left: 30px;
+ 
+   }
+ 
+   .comment-buttons{
+ 
+    margin-left: 30px;
+    margin-bottom: 80px;
+   }
+   
+   
+  
+ }
   
   

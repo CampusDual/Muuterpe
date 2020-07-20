@@ -59,9 +59,9 @@ public class BandRestController extends ORestController<IBandService> {
 		return this.bandService.getBox();
 	}
 	
-	@RequestMapping(value = "/getBandComment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)	
-	public EntityResult getBandComment(@RequestParam(required = true) Integer bandId) {
-		return this.bandService.bandCommentsQuery(bandId);
+	@RequestMapping(value = "/getBandComment/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
+	public EntityResult getBandComment(@RequestBody Map<String, Object> body) {
+		return this.bandService.bandCommentsQuery(body);
 	}
 	
 	@RequestMapping(value = "/getBandSongs/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)	
