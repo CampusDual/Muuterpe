@@ -27,13 +27,19 @@ public interface IBandService {
 
 	public EntityResult getBox() throws OntimizeJEERuntimeException;
 
-	public EntityResult bandCommentsQuery(int bandId) throws OntimizeJEERuntimeException;
-
 	public EntityResult bandAndCategoryQuery() throws OntimizeJEERuntimeException;
 
 	public EntityResult bandSongsQuery(Map<String, Object> body);
 
 	public EntityResult bandImageQuery(Map<String, Object> body);
+
+	public EntityResult commentInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
+
+	public EntityResult bandCommentsQuery(Map<String, Object> body);
+
+	public EntityResult bandVisitById(Map<String, Object> body);
+	
+
 
 	
 	}

@@ -3,12 +3,11 @@
   display: block;
   float: right;
   margin-right: 40px;
-
+  
   img{
     padding-right: 10px;
   }
 }
-
 
 .band_detail {
   margin: 40px 20px 20px 20px;
@@ -17,8 +16,7 @@
     width: 40%;
     display: block;
     float: left;
-  }
-
+ 
   .band_text{
     display: block;
     width: 55%;
@@ -51,8 +49,54 @@
       background-color: #84a9ac;
     }
   }
-  
 
 }
+.comments{
+  margin-top:20px;
+  margin-bottom:20px;
 
+  h2{
+    font-family: "Lucida Console", Courier, monospace;
+    margin-top: 10px;
+  }
+
+}
+.olist-item{
+  margin-top:60px;
+  margin-bottom:60px;
+}
+.bandcomment-item {
+  background-color: white;
+   cursor: pointer;
+   height: 90%;
+   width: 70%;
+   z-index: 3;
+   margin-top: 40px;
+   margin-bottom: 40px;
+   align-items: center;
+
+   h3{
+    font-family: "Lucida Console", Courier, monospace;
+   }
+  
+   .comment-alias{
+    margin-right: 100px;
+    margin-left: 30px;
+   }
+  
+   .comment-body{
+    width:100%;
+    margin-right: 80px;
+    margin-left: 30px;
+ 
+   }
+ 
+   .comment-buttons{
+    margin-left: 30px;
+    margin-bottom: 80px;
+   }
+   
+   
+  
+ }
   

@@ -34,6 +34,8 @@ public class BandService implements IBandService {
 	private ConfigurationDao configurationDao;
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
+	@Autowired
+	private BandCommentDao bandCommentDao;
 
 	@Override
 	public EntityResult bandQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -65,12 +67,19 @@ public class BandService implements IBandService {
 	}
 
 	@Override
-	public EntityResult bandCommentsQuery(int bandId) {
+	public EntityResult bandCommentsQuery(Map<String, Object> body) {
+		Object filter = body.get("filter");
+		Integer band_id = (Integer) ((Map<?, ?>) filter).get("band_id");
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		keyMap.put(BandDao.ATTR_ID, bandId);
+		keyMap.put(BandDao.ATTR_ID, band_id);
 		return this.daoHelper.query(bandDao, keyMap,
 				Arrays.asList(BandDao.ATTR_NAME, BandCommentDao.ATTR_ALIAS, BandCommentDao.ATTR_BODY),
 				"get_band_comment");
+	}
+	
+	@Override
+	public EntityResult commentInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+	return this.daoHelper.insert(bandCommentDao, attrMap);
 	}
 
 	@Override
@@ -130,6 +139,16 @@ public class BandService implements IBandService {
 				: 0;
 	}
 
+	@Override
+	public EntityResult bandVisitById(Map<String, Object> body) {
+		Object filter = body.get("filter");
+		Integer band_id = (Integer) ((Map<?, ?>) filter).get("band_id");
+		Map<String, Object> keyMap = new HashMap<String, Object>();
+		keyMap.put(BandDao.ATTR_ID, band_id);
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
+				"band_visits");
+	}
+	
 	@Override
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
@@ -195,5 +214,7 @@ public class BandService implements IBandService {
 				Arrays.asList(ConfigurationDao.ATTR_BAND_IMG));
 		
 	}
+
+	
 
 }

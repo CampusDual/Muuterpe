@@ -9,7 +9,7 @@ import { share } from "rxjs/operators";
 })
 
 export class EventService extends OntimizeEEService {
-
+  
   buildHeaders() {
     const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
     return new HttpHeaders({
@@ -46,6 +46,5 @@ export class EventService extends OntimizeEEService {
     });
     return dataObservable.pipe(share());
   }
-
 }
 
