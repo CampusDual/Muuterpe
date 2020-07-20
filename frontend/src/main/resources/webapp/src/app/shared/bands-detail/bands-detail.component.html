@@ -1,20 +1,12 @@
+<slideshow [imageUrls]="arrayImages"></slideshow>
+
 <div class="iconos">
-  <img src="https://img.icons8.com/material-outlined/40/000000/facebook.png"/>
-  <img src="https://img.icons8.com/material-outlined/40/000000/instagram-new.png"/>
-  <img src="https://img.icons8.com/material-outlined/40/000000/youtube-play.png"/>
-  </div>
+  <img src="https://img.icons8.com/material-outlined/40/000000/facebook.png" />
+  <img src="https://img.icons8.com/material-outlined/40/000000/instagram-new.png" />
+  <img src="https://img.icons8.com/material-outlined/40/000000/youtube-play.png" />
+</div>
 <div class="band_detail">
   <h1>{{data.band_name}}</h1>
-
- 
-
-
-  
-
-<slideshow [imageUrls]="arrayImages" ></slideshow>
-
-
-
   <div class="band_text">
     <p>{{data.band_info}}</p>
     <h4 style="margin-bottom: 0px;">Actual Members</h4>
@@ -26,7 +18,8 @@
 
 
   <div>
-    <o-grid [static-data]="getBandResult()" layout-align="center stretch" controls="false" elevation="0" appearance="none">
+    <o-grid [static-data]="getBandResult()" layout-align="center stretch" controls="false" elevation="0"
+      appearance="none">
       <o-grid-item *ngFor="let item of bandResult">
         <div class="video-container" class="videos" style="margin-right: 10px;">
           <iframe frameborder="0" scrolling="no" marginheight="10" marginwidth="10" width="788.54" height="443"
@@ -37,13 +30,64 @@
     </o-grid>
   </div>
 
-  <o-grid [static-data]="getBandResultName()" title="" quick-filter="false" controls="false" refresh-button="false"
-  insert-button="false" insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
-  detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
-  <o-grid-item *ngFor="let item of bandResultName">
-    <img [src]= "item.band_images_path">
-  </o-grid-item>
-</o-grid>  
+  <!--  <o-grid [static-data]="getBandResultName()" title="" quick-filter="false" controls="false" refresh-button="false"
+    insert-button="false" insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
+    detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+    <o-grid-item *ngFor="let item of bandResultName">
+      <img [src]="item.band_images_path">
+    </o-grid-item>
+  </o-grid> -->
 
- 
+  <div class="comments">
+    <h2>COMMENTS:</h2>
+    <div >
+      <o-list [static-data]="getCommentResult()" title="" quick-filter="false" controls="false" refresh-button="false"
+        insert-button="false" insert-button-floatable="false" delete-button="false" selectable="false" dense="false"
+        detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+
+        <o-list-item  cclcass="olist-item" *ngFor="let item of bandCommentResult">
+         
+            <div style="padding-right:20px;">
+              <b [routerLink]="['/main/band', bandCommentResult.comment_alias]">{{item.comment_alias}}:</b>
+            </div>
+            <div>
+              <b [routerLink]="['/main/band', bandCommentResult.comment_body]">{{item.comment_body}}</b>
+            </div>
+         
+
+        </o-list-item>
+
+
+      </o-list>
+    </div>
+    <div class="bandcomment-item mat-elevation-z1">
+      <h3>Your comment:</h3>
+      <form service="bands" entity="commentInsert" key="band_id" [formGroup]="registerForm" show-header="no">
+
+        <o-row>
+          <mat-form-field class="comment-alias" [ngClass]="">
+            <mat-label>{{'NICKNAME' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="text" formControlName="nick" placeholder="Min.3, max. 25 characteres"
+              required="true"  minlength="3" maxlength="25" variant="outlined">
+          </mat-form-field>
+        </o-row>
+        <o-row>
+          <mat-form-field class="comment-body" [ngClass]="">
+            <mat-label>{{'COMMENT' | oTranslate}}</mat-label>
+            <textarea class="input-register" matInput type="text" formControlName="comment_body"
+              placeholder="Your comment" minlength="3" maxlength="200"></textarea>
+          </mat-form-field>
+        </o-row>
+
+        <div class="comment-buttons">
+          <o-button (click)="onResetForm()" attr="stroked" type="STROKED" label="CLEAR" layout-padding></o-button>
+          <o-button (click)="createComment()" attr="stroked" type="STROKED" label="COMMENT" layout-padding>
+          </o-button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
 </div>

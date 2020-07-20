@@ -6,11 +6,11 @@
 	catalog="" schema="${mainschema}" table="BAND_COMMENT"
 	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
 	<DeleteKeys>
-		<Column>ID</Column>
+		<Column>COMMENT_ID</Column>
 	</DeleteKeys>
 	<UpdateKeys>
-		<Column>ID</Column>
+		<Column>COMMENT_ID</Column>
 	</UpdateKeys>
-	<GeneratedKey>ID</GeneratedKey>
+	<GeneratedKey>comment_id</GeneratedKey>
 </JdbcEntitySetup>
 
