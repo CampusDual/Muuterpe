@@ -1,9 +1,8 @@
-<div fxLayout="column" fxFlex="1 1 auto" style="    background: repeating-linear-gradient( 44deg, rgba(0, 0, 0, 0) 40px,
-  rgba(0, 0, 0, 0) 48px, #e4e3e3 20px, #e4e3e3 49px);">
+<div class="body_home" fxLayout="column" fxFlex="1 1 auto">
   <div class="div_bandsEmph">
-    <o-grid #grid attr="BANDTABLE" title="DESTACADOS" service="bands" entity="getBandsEmph" columns="band_name;CATEGORY"
-      keys="band_id" query-rows="1" refresh-button="no" gutter-size="18px" detail-mode="none" quick-filter="false"
-      style=" margin: 5% 5% 5% 5%; " class="o-grid-home">
+    <o-grid #grid attr="BANDTABLE" title="GRUPOS DESTACADOS" service="bands" entity="getBandsEmph"
+      columns="band_name;CATEGORY" keys="band_id" query-rows="2"  quick-filter="false" controls="true" 
+      refresh-button="no" gutter-size="18px" detail-mode="none" show-page-size="false" pagination-controls="false" class="o-grid-home">
       <o-grid-item *ngFor="let item of grid.dataArray">
         <div (click)="openBandsDetail(item)" fxLayout="column" fxLayoutAlign="space-evenly center"
           class="band-item mat-elevation-z1">
@@ -14,14 +13,11 @@
             </div>
             <mat-divider fxFlex></mat-divider>
           </div>
-
-          <div fxLayout="column" fxLayoutAlign="start center" class="band-data">
-            <span class=" band-name">{{ item.band_name }}</span>
+          <div fxLayout="column" fxLayoutAlign="start center" class="band_data">
+            <span class=" band_name">{{ item.band_name }}</span>
             <span>{{  item.CATEGORY  }}</span>
-
           </div>
         </div>
-
       </o-grid-item>
     </o-grid>
   </div>
@@ -35,7 +31,6 @@
         <o-list-item-card (click)="openDetail(row)" #item title="{{row.event_name}}"
           subtitle=" {{ row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true"
           image="assets/images/events/{{row.event_name}}.jpg"> </o-list-item-card>
-
       </o-list-item>
     </o-list>
   </div>

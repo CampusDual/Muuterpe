@@ -1,12 +1,16 @@
-<div style="background: repeating-linear-gradient( 44deg,
-rgba(0, 0, 0, 0) 40px,rgba(0, 0, 0, 0) 48px,#e4e3e3 20px,#e4e3e3 49px);height: 100%;">
-<div layout-padding style="padding-top: 50px; margin-bottom: 50px; ">
-  <o-list #list attr="EVENTTABLE" service="events" title="PROXIMOS EVENTOS" entity="event" columns="event_id;event_name;event_date_time;event_region;event_address;event_buy_tickets"
-  refresh-button="true" quick-filter="false" insert-button="false" delete-button="false"
-  row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
-   <o-list-item *ngFor="let row of list.dataArray" >
-      <o-list-item-card (click)="openDetail(row)" #item title="{{row.event_name}}" subtitle="{{row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true" image="assets/images/events/{{row.event_name}}.jpg" > </o-list-item-card>
-    </o-list-item>
-</o-list>
-</div>
+<div class="body_event_home">
+  <div class= "div_event">
+    <o-list #list attr="EVENTTABLE" service="events" title="EVENTOS" entity="event"
+      columns="event_id;event_name;event_date_time;event_region;event_address;event_buy_tickets" refresh-button="true"
+      quick-filter="false" insert-button="false" delete-button="false" row-height="medium" detail-mode="none"
+      refresh-button="no" gutter-size="0">
+      <o-list-item *ngFor="let row of list.dataArray">
+        <o-list-item-card (click)="openDetail(row)" #item title="{{row.event_name}}"
+          subtitle="{{row.event_region}}, {{row.event_date_time |  date:'dd/MM/yyyy'}} " show-image="true"
+          image="assets/images/events/{{row.event_name}}.jpg"> </o-list-item-card>
+      </o-list-item>
+    </o-list>
+  </div>
 
+
+</div>

@@ -1,47 +1,58 @@
+
 .iconos{
   display: block;
   float: right;
+  margin-right: 40px;
 
   img{
     padding-right: 10px;
   }
 }
 
+
 .band_detail {
-  margin: auto;
+  margin: 40px 20px 20px 20px;
 
-
-  h1{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-    font-size: 50px;
-    margin-top: 10px;
-  }
-
-  .band_slider{
-    margin-bottom: 40px;
+  .slideshow{
+    width: 40%;
+    display: block;
     float: left;
-    width: 50%;
-
-    img{
-      object-fit: cover;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 85%;
-    }
   }
 
   .band_text{
+    display: block;
+    width: 55%;
+    float: right;
     font-family: "Lucida Console", Courier, monospace;
     font-size: 16px;
     text-align: justify;
     line-height: 2;
-    padding-right: 2%;
+    padding-right: 20px;
+
+  
+    h1{
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      text-align: center;
+      font-size: 50px;
+      margin: 0px;
+    }
+  
   }
 
+  .videos{
+    width: 100%;
+    display: block;
+    position: relative;
+    float: left;
+    margin-top: 20px;
+
+    .mat-expansion-panel{
+      box-shadow: none;
+      background-color: #84a9ac;
+    }
+  }
   
+
 }
 
-  
   

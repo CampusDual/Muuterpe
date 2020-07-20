@@ -1,8 +1,15 @@
+.band_home{
+  background-color: #3b6978;
+
+.band_home_grid{
+  align-self: center;
+  width: 90%;
+  margin-top: 30px;
 
   .band-item {
-      background-color: white;
+    background-color: #e7dfd5;
     cursor: pointer;
-    height: 80%;
+    height: 90%;
     width: 70%;
     z-index: 3;
   
@@ -20,7 +27,6 @@
         justify-content: center;
         overflow: hidden;
         padding-top: 12px;
-
   
         img {
           height: auto;
@@ -52,4 +58,6 @@
       }
     }
   }
-  
+}
+
+}

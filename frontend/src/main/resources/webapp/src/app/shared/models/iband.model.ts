@@ -1,5 +1,7 @@
-export interface IBandModel {
-    song_audio: String;
-    band_images_path: String;
 
+
+export interface IBandModel {
+    song_audio: string;
+    band_images_path: string;
 }
+

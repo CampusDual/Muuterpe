@@ -1,10 +1,8 @@
-
- 
- <div fxLayout="column" fxFlex="1 1 auto" style="background: repeating-linear-gradient( 44deg,
-      rgba(0, 0, 0, 0) 40px,rgba(0, 0, 0, 0) 48px,#e4e3e3 20px,#e4e3e3 49px);">
-
-  <o-grid #grid attr="BANDTABLE" service="bands" entity="getBandsAndCategory"
-    columns="band_name;CATEGORY" keys="band_id" query-rows="2" quick-filter="false" controls="false" 
+<div class="band_home" >
+ <div fxLayout="column" fxFlex="1 1 auto" class="body_band_home">
+   <div class="band_home_grid">
+  <o-grid #grid attr="BANDTABLE"  title="GRUPOS" service="bands" entity="getBandsAndCategory"
+    columns="band_name;CATEGORY" keys="band_id" query-rows="2" quick-filter="false" controls="true" 
     refresh-button="no" gutter-size="18px" detail-mode="none" show-page-size="false" pagination-controls="false">
     <o-grid-item *ngFor="let item of grid.dataArray">
       <div (click)="openDetail(item)" fxLayout="column" fxLayoutAlign="space-evenly center"
@@ -27,8 +25,7 @@
     </o-grid-item>
   </o-grid>
 </div>
-
-
+</div>
 
 
             

@@ -15,9 +15,6 @@ export class EventsHomeComponent   {
     protected sanitizer: DomSanitizer
   ) { }
 
-
-
-
   public openDetail(data: any): void {
     this.dialog.open(EventsDetailComponent, {
       height: '50%',
