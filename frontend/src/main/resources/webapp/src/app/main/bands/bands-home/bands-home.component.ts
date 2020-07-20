@@ -15,17 +15,10 @@ export class BandsHomeComponent  {
     protected sanitizer: DomSanitizer
   ) { }
 
-  videos: string[] = [
-    'SkypZuY6ZvA',
-    '_N5YIGT_R58',
-    'Ld0NDDYXj-c',
-    'uelHwf8o7_U'
-  ];
-
   public openDetail(data: any): void {
     this.dialog.open(BandsDetailComponent, {
       height: '98%',
-      width: '80%',
+      width: '70%',
       data: data
     });
   }

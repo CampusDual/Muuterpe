@@ -212,6 +212,7 @@ public class BandService implements IBandService {
 		
 		return this.daoHelper.query(this.configurationDao, keyMap,
 				Arrays.asList(ConfigurationDao.ATTR_BAND_IMG));
+		
 	}
 
 	

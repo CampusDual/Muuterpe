@@ -1,15 +1,12 @@
-import {
-  Component,
-  OnInit,
-  Inject,
-  ViewChild,
-  SystemJsNgModuleLoader,
-} from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { MAT_DIALOG_DATA } from "@angular/material";
 
+import { Component, OnInit, Inject, ViewChild, SystemJsNgModuleLoader } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { IImage } from 'ng-simple-slideshow';
+import { ActivatedRoute } from '@angular/router';
+import { BandService } from 'app/main/services/band.services';
+import { IBandModel } from '../models/iband.model';
 import { IImage } from "ng-simple-slideshow";
-
 import { ActivatedRoute } from "@angular/router";
 import { BandService } from "app/main/services/band.services";
 import { IBandModel } from "../models/iband.model";
@@ -24,9 +21,10 @@ import { nextTick } from "process";
   styleUrls: ["./bands-detail.component.scss"],
 })
 export class BandsDetailComponent implements OnInit {
+
   public parametro: any;
-  public bandResultName: IBandModel;
   public bandResult: IBandModel;
+  public alias: String;
   public bandCommentResult: IBandCommentModel;
   public bandCommentInsertResult: IBandCommentModel = null;
   public registerForm: FormGroup = null;
@@ -37,19 +35,19 @@ export class BandsDetailComponent implements OnInit {
     comment_alias: "",
     comment_body: "",
   };
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     protected sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private bandService: BandService
   ) {}
+  
+  panelOpenState = false;
 
-  public arrayImages: (string | IImage)[] = [
-    "assets/images/bands/slider/BEEGEES_1.jpg",
-    "assets/images/bands/slider/BEEGEES_2.jpg",
-    "assets/images/bands/slider/BEEGEES_3.jpg",
-    "assets/images/bands/slider/BEEGEES_4.jpg",
-  ];
+  public arrayImages: (string | IImage)[] = [];
+  public arrayVideos: (string)[] = [];
+
   showArrows: boolean = true;
   showDots: boolean = true;
   autoPlay: boolean = true;
@@ -66,15 +64,13 @@ export class BandsDetailComponent implements OnInit {
   ngOnStartBandId(id: number) {
     this.bandService.getBandDataId(id).subscribe(
       (bandData: any) => {
-        if (bandData["data"]) {
-          if (bandData["data"].length > 0) {
-            this.bandResult = bandData["data"];
-          } else {
-            this.bandResult = null;
-          }
+        if (bandData['data']) {
+          bandData['data'].forEach((value: IBandModel, key: string) => {
+            this.arrayVideos.push(value.song_audio);
+          });
         }
       },
-      (err) => console.error(err)
+      err => console.error(err)
     );
   }
 
@@ -93,10 +89,6 @@ export class BandsDetailComponent implements OnInit {
     );
   }
 
-  getBandResult() {
-    return this.bandResult;
-  }
-
   getCommentResult() {
     console.log(this.bandCommentResult);
     return this.bandCommentResult;
@@ -105,54 +97,35 @@ export class BandsDetailComponent implements OnInit {
   ngOnStartBandName(id: String) {
     this.bandService.getBandDataName(id).subscribe(
       (bandDataName: any) => {
-        if (bandDataName["data"]) {
-          if (bandDataName["data"].length > 0) {
-            this.bandResultName = bandDataName["data"];
-          } else {
-            this.bandResultName = null;
-          }
+        if (bandDataName['data']) {
+          bandDataName['data'].forEach((value: IBandModel, key: string) => {
+            this.arrayImages.push(value.band_images_path);
+          });
         }
       },
-      (err) => console.error(err)
+      err => console.error(err)
     );
   }
+}
 
-  getBandResultName() {
-    console.log(this.bandResultName);
-
-    return this.bandResultName;
-  }
   createForm() {
     return new FormGroup({
       nick: new FormControl("", [
         Validators.minLength(3),
-        Validators.maxLength(25),
-       
+        Validators.maxLength(25)
       ]),
       
       comment_body: new FormControl("", [
         Validators.minLength(3),
-        Validators.maxLength(200),
+        Validators.maxLength(200)
       ]),
     });
+  }
     
-  }
-  nickValidator(control:FormControl):ValidationErrors{
-    if (control.value == "" ||control.value <3) {
-      return {
-        'invalidNick': true
-      };
-    }
-    return {};
-  }
-  
- 
   createComment() {
-
     if(this.registerForm.valid){
       this.bandComment.comment_body = this.registerForm.value.comment_body;
       this.bandComment.comment_alias = this.registerForm.value.nick;
-   
       this.bandService.commentInsert(this.bandComment).subscribe(
         (bandCommentData: any) => {
           if (bandCommentData["data"]) {
@@ -171,10 +144,7 @@ export class BandsDetailComponent implements OnInit {
          alert("Oooops, something went wrong");
         }
       );
-
     }
-
-  
   }
 
   onResetForm(): void {

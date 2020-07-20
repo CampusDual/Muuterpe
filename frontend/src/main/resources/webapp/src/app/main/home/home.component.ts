@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   public openBandsDetail(data: any): void {
     this.dialog.open(BandsDetailComponent, {
       height: '98%',
-      width: '80%',
+      width: '70%',
       data: data
     });
   }

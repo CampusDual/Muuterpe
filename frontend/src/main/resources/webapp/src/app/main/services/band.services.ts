@@ -11,6 +11,7 @@ import { IBandCommentModel } from 'app/shared/models/ibandcomment.model';
         providedIn: 'root'
     }
 )
+
 export class BandService extends OntimizeEEService {
 
     buildHeaders() {
@@ -46,8 +47,6 @@ export class BandService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
-
-
 
     getBandDataName(id: String) {
         const url = CONFIG.apiEndpoint + '/' + 'bands/getBandImage/search';

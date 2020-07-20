@@ -1,15 +1,18 @@
+.body_home{
+background-color: #3b6978;
+  /*background: repeating-linear-gradient( 44deg, rgba(0, 0, 0, 0) 40px,
+  rgba(0, 0, 0, 0) 48px, #e4e3e3 20px, #e4e3e3 49px);*/
 
 .band-item {
- background-color: white;
+  background-color: #e7dfd5;
   cursor: pointer;
-  height: 80%;
-  width: 70%;
+  height: 95%;
+  width: 75%;
   z-index: 3;
 
   .image-container {
     height: 50%;
     width: 100%;
-    padding-top: 190px;
 
     .mat-divider {
       margin: 0 12px 30px;
@@ -19,17 +22,16 @@
       align-items: center;
       display: flex;
       justify-content: center;
-      overflow: hidden; 
+      overflow: hidden;
 
       img {
         height: auto;
         width: auto;
-        
       }
     }
   }
 
-  .band-data {
+  .band_data {
     height: 35%;
     width: 100%;
 
@@ -41,47 +43,15 @@
       text-overflow: ellipsis;
       white-space: nowrap;
 
-      &.band-name {
-          padding-top: 20px;
-          font-size: 28px;
-          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-          font-weight: bold;
+      &.band_name {
+        padding-top: 20px;
+        font-size: 28px;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        font-weight: bold;
       }
-
     }
   }
 }
 
-.band-detail {
-    .image {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
 
-  
-      img {
-        height: auto;
-        width: auto;
-      }
-    }
-  
-    .band-name {
-      font-size: 18px;
-      padding-top: 6px;
-    }
-    .band-data {
-      span {
-        align-items: center;
-        display: flex;
-        padding-top: 4px;
-  
-        .mat-icon {
-          margin-right: 12px;
-        }
-      }
-    }
-  }
-  
-
-
+}
