@@ -6,10 +6,6 @@ import { IImage } from 'ng-simple-slideshow';
 import { ActivatedRoute } from '@angular/router';
 import { BandService } from 'app/main/services/band.services';
 import { IBandModel } from '../models/iband.model';
-import { IImage } from "ng-simple-slideshow";
-import { ActivatedRoute } from "@angular/router";
-import { BandService } from "app/main/services/band.services";
-import { IBandModel } from "../models/iband.model";
 import { forEach } from "@angular/router/src/utils/collection";
 import { FormGroup, FormControl, Validators, ValidationErrors } from "@angular/forms";
 import { IBandCommentModel } from "../models/ibandcomment.model";
@@ -28,7 +24,7 @@ export class BandsDetailComponent implements OnInit {
   public bandCommentResult: IBandCommentModel;
   public bandCommentInsertResult: IBandCommentModel = null;
   public registerForm: FormGroup = null;
-  public alias: String;
+
 
   private bandComment: IBandCommentModel = {
     band_id: this.data.band_id,
@@ -66,8 +62,9 @@ export class BandsDetailComponent implements OnInit {
       (bandData: any) => {
         if (bandData['data']) {
           bandData['data'].forEach((value: IBandModel, key: string) => {
-            this.arrayVideos.push(value.song_audio);
+            this.arrayVideos.push(value.song_audio);            
           });
+          this.arrayVideos.push('');
         }
       },
       err => console.error(err)
@@ -106,7 +103,7 @@ export class BandsDetailComponent implements OnInit {
       err => console.error(err)
     );
   }
-}
+
 
   createForm() {
     return new FormGroup({

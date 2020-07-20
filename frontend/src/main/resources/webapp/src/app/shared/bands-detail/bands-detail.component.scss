@@ -1,9 +1,7 @@
-
 .iconos{
   display: block;
   float: right;
   margin-right: 40px;
-  
   img{
     padding-right: 10px;
   }
@@ -11,12 +9,11 @@
 
 .band_detail {
   margin: 40px 20px 20px 20px;
-
   .slideshow{
     width: 40%;
     display: block;
     float: left;
- 
+  }
   .band_text{
     display: block;
     width: 55%;
@@ -26,7 +23,6 @@
     text-align: justify;
     line-height: 2;
     padding-right: 20px;
-
   
     h1{
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -36,22 +32,23 @@
     }
   
   }
-
   .videos{
     width: 100%;
     display: block;
     position: relative;
     float: left;
     margin-top: 20px;
-
     .mat-expansion-panel{
       box-shadow: none;
       background-color: #84a9ac;
     }
   }
 
-}
+
 .comments{
+  display: block;
+  float: left;
+  width: 100%;
   margin-top:20px;
   margin-bottom:20px;
 
@@ -65,9 +62,8 @@
   margin-top:60px;
   margin-bottom:60px;
 }
+
 .bandcomment-item {
-  background-color: white;
-   cursor: pointer;
    height: 90%;
    width: 70%;
    z-index: 3;
@@ -88,15 +84,13 @@
     width:100%;
     margin-right: 80px;
     margin-left: 30px;
- 
    }
  
    .comment-buttons{
     margin-left: 30px;
     margin-bottom: 80px;
+    float:right;
+    cursor: pointer;
    }
-   
-   
-  
- }
-  
+  }
+}
