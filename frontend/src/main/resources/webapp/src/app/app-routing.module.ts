@@ -1,6 +1,11 @@
 import { NgModule, NgModuleFactory } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
+
+export function loadLoginModule() {
+  return LoginModule;
+}
 
 
 export function loadMainModule() {
@@ -9,13 +14,13 @@ export function loadMainModule() {
 
 export const routes: Routes = [
   { path: 'main', loadChildren: loadMainModule },
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: 'login', loadChildren: loadLoginModule },
+  { path: '', redirectTo: 'main', pathMatch: 'full' }
 
 ];
 
 const opt = {
-  enableTracing: false
-  // true if you want to print navigation routes
+  enableTracing: true //if you want to print navigation routes
 };
 
 @NgModule({
