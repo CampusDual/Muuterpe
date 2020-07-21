@@ -111,7 +111,7 @@ public class BandService implements IBandService {
 	public EntityResult bandsRecent() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getBandsRencent());
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,BandDao.ATTR_INFO, "CATEGORY"),
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,BandDao.ATTR_INFO,BandDao.ATTR_FACEBOOK,BandDao.ATTR_INSTAGRAM,BandDao.ATTR_YOUTUBE, "CATEGORY"),
 				"band_category");
 	}
 
@@ -152,7 +152,7 @@ public class BandService implements IBandService {
 	@Override
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,BandDao.ATTR_INFO, "CATEGORY"),
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,BandDao.ATTR_INFO,BandDao.ATTR_FACEBOOK,BandDao.ATTR_YOUTUBE,BandDao.ATTR_INSTAGRAM, "CATEGORY"),
 				"band_visits");
 	}
 
