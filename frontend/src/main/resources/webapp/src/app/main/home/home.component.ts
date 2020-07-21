@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigate(['../', 'login'], { relativeTo: this.actRoute });
+    this.router.navigate(['/', 'login'], { relativeTo: this.actRoute });
   }
 
   public openDetail(data: any): void {

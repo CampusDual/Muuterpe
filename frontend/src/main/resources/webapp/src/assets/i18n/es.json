@@ -1,10 +1,8 @@
 {
   "APP_TITLE": "JEE seed",
   "VERSION": "Versión",
-  "EXAMPLE_LOGIN_INFO": "Usuario y contraseña de ejemplo",
   "USERNAME": "Usuario",
   "PASSWORD": "Contraseña",
-  "LOGIN": "Entrar",
   "LOGOUT": "Salir",
   "VIEW": "Vistas",
   "HOME": "INICIO",
