@@ -2,35 +2,35 @@
 
   <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div class="image" style="margin-bottom: 10px;">
-        <img style="height: 150px; width: 175px;" src="assets/images/events/{{data.event_name}}.jpg">
+      <div class="image" style="margin-bottom: 10px;margin-right:10px;">
+        <img style="height: 250px; width: 250px;" src="assets/images/events/{{data.event_name}}.jpg">
       </div>
       <span class="event-name" style="text-align: center; font-size: large;"><b>{{ data.event_name }}</b></span>
       <mat-divider></mat-divider>
     </div>
     <div fxLayout="column" fxFlex="75" class="event-data">
-      <span class="event-name" style="text-align: center; font-size: largeR;"><b>{{'INFO' | oTranslate }} </b></span>
+      <span class="event-name" style="text-align: center; font-size: largeR;"><b class="information">{{'INFORMATION' | oTranslate }} </b></span>
       <span class="event-address" style="margin-top: 10px;">
         <mat-icon>home</mat-icon>{{ data.event_address }} {{ data.event_region }}
       </span>
       <span class="event_date_time">
-        <mat-icon>star</mat-icon>{{ data.event_date_time |  date:'dd/MM/yyyy'}}
+        <img src="https://img.icons8.com/metro/26/000000/calendar.png"/> {{ data.event_date_time |  date:'dd/MM/yyyy'}}
       </span>
 
+      <p class="bands">{{'BANDS'|oTranslate}}</p>
       <o-list [static-data]="getEventResult()" title="" quick-filter="false" controls="false" refresh-button="false"
         insert-button="false" insert-button-floatable="false" delete-button="false" selectable="false" dense="false"
-        detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+        detail-button-in-row="false" edit-button-in-row="false" detail-mode="none" style="align-items: left;">
         <o-list-item *ngFor="let item of eventResult">
-          <p class=item-hover [routerLink]="['/main/event', eventResult.event_id]">{{item.band_name}}</p>
+          <p class=item-hover style="font-family: 'Courier New', Courier, monospace;font-size: 25px;text-align:left;" [routerLink]="['/main/event', eventResult.event_id]">{{item.band_name}}</p>
         </o-list-item>
       </o-list>
 
 
-      <span class="event_buy_tickets" style="margin-top: 10px; align-items: center;">
-        <o-button attr="flat" (click)="openURL(data)" type="FLAT" label="{{'BUYTICKETS' | oTranslate }}" layout-padding>
+      <div class="event_buy_tickets" >
+        <o-button class="buy-button" attr="stroked" (click)="openURL(data)" type="STROKED" label="{{'BUYTICKETS' | oTranslate }}" layout-padding>
         </o-button>
-
-      </span>
+      </div>
 
     </div>
   </div>

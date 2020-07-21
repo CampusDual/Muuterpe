@@ -1,7 +1,13 @@
 <div class="iconos">
-  <img src="https://img.icons8.com/material-outlined/40/000000/facebook.png" />
-  <img src="https://img.icons8.com/material-outlined/40/000000/instagram-new.png" />
-  <img src="https://img.icons8.com/material-outlined/40/000000/youtube-play.png" />
+  <a mat-button href="{{data.band_facebook}}" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/40/000000/facebook.png" />
+  </a>
+  <a mat-button href="{{data.band_instagram}}" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/40/000000/instagram-new.png" />
+  </a>
+  <a mat-button href="{{data.band_youtube}}" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/40/000000/youtube-play.png" />
+  </a>
 </div>
 
 <div class="band_detail">
@@ -14,41 +20,43 @@
 
   <div class="band_text">
     <h1>{{data.band_name}}</h1>
-    <p>Category:{{data.CATEGORY}}</p>
+    <p>{{'Category'|oTranslate}}:{{data.CATEGORY}}</p>
     <p>{{data.band_info}}</p>
   </div>
 
   <div class="videos">
-    <ng-container *ngFor="let video of arrayVideos">
-      <mat-accordion style="background-color: brown;" levation="0">
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Video {{video.valueOf()}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div class="video-container" class="videos" style="margin-right: 10px;">
-            <iframe frameborder="0" scrolling="no" marginheight="10" marginwidth="10" width="788.54" height="443"
-              type="text/html" [src]="video |safe">
-            </iframe>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+    <ng-container *ngFor="let video of arrayVideos; let i = index">
+      <!-- <ng-container *ngFor="let name of arraySongName"> -->
+        <mat-accordion style="background-color: brown;" levation="0">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Video {{arraySongName[i]}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="video-container" class="videos" style="margin-right: 10px;">
+              <iframe frameborder="0" scrolling="no" marginheight="10" marginwidth="10" width="788.54" height="443"
+                type="text/html" [src]="video |safe">
+              </iframe>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      <!-- </ng-container> -->
     </ng-container>
   </div>
 
 
   <div class="comments">
-    <h2>COMMENTS:</h2>
+    <h2>{{'COMMENTS'|oTranslate}}</h2>
     <div>
       <o-list [static-data]="getCommentResult()" title="" quick-filter="false" controls="false" refresh-button="false"
         insert-button="false" insert-button-floatable="false" delete-button="false" selectable="false" dense="false"
         detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
-        <o-list-item cclcass="olist-item" *ngFor="let item of bandCommentResult">
-          <div>
+        <o-list-item class="olist-item" *ngFor="let item of bandCommentResult">
+          <div class="comment-text-alias">
             <b [routerLink]="['/main/band', bandCommentResult.comment_alias]">{{item.comment_alias}}:</b>
           </div>
-          <div>
+          <div class="comment-text-body">
             <b [routerLink]="['/main/band', bandCommentResult.comment_body]">{{item.comment_body}}</b>
           </div>
         </o-list-item>
@@ -56,7 +64,7 @@
     </div>
 
     <div class="bandcomment-item">
-      <h3>Your comment:</h3>
+      <h3>{{'YOUR COMMENT'|oTranslate}}</h3>
       <form service="bands" entity="commentInsert" key="band_id" [formGroup]="registerForm" show-header="no">
         <o-row>
           <mat-form-field class="comment-alias" [ngClass]="">
@@ -74,8 +82,8 @@
         </o-row>
 
         <div class="comment-buttons">
-          <o-button (click)="onResetForm()" attr="stroked" type="STROKED" label="CLEAR" layout-padding></o-button>
-          <o-button (click)="createComment()" attr="stroked" type="STROKED" label="COMMENT" layout-padding>
+          <o-button (click)="onResetForm()" attr="stroked" type="STROKED" label="{{'CLEAR'|oTranslate}}" layout-padding></o-button>
+          <o-button (click)="createComment()" attr="stroked" type="STROKED" label="{{'COMMENT'|oTranslate}}" layout-padding>
           </o-button>
         </div>
       </form>

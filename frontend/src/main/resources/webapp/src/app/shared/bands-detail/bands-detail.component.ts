@@ -43,6 +43,7 @@ export class BandsDetailComponent implements OnInit {
 
   public arrayImages: (string | IImage)[] = [];
   public arrayVideos: (string)[] = [];
+  public arraySongName: (string)[] = [];
 
   showArrows: boolean = true;
   showDots: boolean = true;
@@ -62,7 +63,8 @@ export class BandsDetailComponent implements OnInit {
       (bandData: any) => {
         if (bandData['data']) {
           bandData['data'].forEach((value: IBandModel, key: string) => {
-            this.arrayVideos.push(value.song_audio);            
+            this.arrayVideos.push(value.song_audio); 
+            this.arraySongName.push(value.song_name);           
           });
           this.arrayVideos.push('');
         }
@@ -87,7 +89,6 @@ export class BandsDetailComponent implements OnInit {
   }
 
   getCommentResult() {
-    console.log(this.bandCommentResult);
     return this.bandCommentResult;
   }
 
