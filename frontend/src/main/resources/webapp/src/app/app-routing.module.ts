@@ -7,6 +7,7 @@ export function loadLoginModule() {
   return LoginModule;
 }
 
+
 export function loadMainModule() {
   return MainModule;
 }
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'main', loadChildren: loadMainModule },
   { path: 'login', loadChildren: loadLoginModule },
   { path: '', redirectTo: 'main', pathMatch: 'full' }
+
 ];
 
 const opt = {

@@ -1,10 +1,8 @@
 {
   "APP_TITLE": "Quickstart",
   "VERSION": "Version",
-  "EXAMPLE_LOGIN_INFO": "Use this user and password for login",
   "USERNAME": "Username",
   "PASSWORD": "Password",
-  "LOGIN": "Login",
   "LOGOUT": "Logout",
   "VIEW": "Views",
   "HOME": "Home",
@@ -17,5 +15,7 @@
   "BANDS": "BANDS",
   "NAME": "NAME",
   "EVENTS":"EVENTS",
-  "HIGHLIGHTS": "HIGHLIGHTS"
+  "HIGHLIGHTS": "HIGHLIGHTS",
+  "NICKNAME": "NICKNAME",
+  "COMMENT" : "COMMENT"
 }

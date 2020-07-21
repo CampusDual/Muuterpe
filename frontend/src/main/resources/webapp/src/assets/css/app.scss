@@ -19,8 +19,4 @@
 @import 'node_modules/ontimize-web-ngx/theme.scss';
 @include o-material-theme($theme);
 
-// Propagate theme to screen styles definition.
-@import '../../app/login/login.theme.scss';
-@include login-theme($theme);
-
-@import './custom.scss'
+@import './custom.scss';

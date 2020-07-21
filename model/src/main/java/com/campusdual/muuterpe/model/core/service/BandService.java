@@ -88,7 +88,7 @@ public class BandService implements IBandService {
 		Integer band_id = (Integer) ((Map<?, ?>) filter).get("band_id");
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		keyMap.put(BandDao.ATTR_ID, band_id);
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(SongDao.ATTR_SONG_AUDIO), "get_band_song");
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(SongDao.ATTR_SONG_AUDIO,SongDao.ATTR_SONG_NAME, SongDao.ATTR_ALBUM_NAME), "get_band_song");
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class BandService implements IBandService {
 	public EntityResult bandsRecent() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		keyMap.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, this.getBandsRencent());
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,BandDao.ATTR_INFO, "CATEGORY"),
 				"band_category");
 	}
 
@@ -145,14 +145,14 @@ public class BandService implements IBandService {
 		Integer band_id = (Integer) ((Map<?, ?>) filter).get("band_id");
 		Map<String, Object> keyMap = new HashMap<String, Object>();
 		keyMap.put(BandDao.ATTR_ID, band_id);
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,"CATEGORY"),
 				"band_visits");
 	}
 	
 	@Override
 	public EntityResult bandsMostVisit() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME, "CATEGORY"),
+		return this.daoHelper.query(bandDao, keyMap, Arrays.asList(BandDao.ATTR_ID, BandDao.ATTR_NAME,BandDao.ATTR_INFO, "CATEGORY"),
 				"band_visits");
 	}
 
@@ -194,7 +194,7 @@ public class BandService implements IBandService {
 
 	private EntityResult entityBands() {
 		Map<String, Object> keyMap = new HashMap<String, Object>();
-		EntityResult bands = this.bandQuery(keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID));
+		EntityResult bands = this.bandQuery(keyMap, Arrays.asList(BandDao.ATTR_NAME, BandDao.ATTR_ID,BandDao.ATTR_INFO));
 		return bands;
 	}
 
