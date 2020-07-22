@@ -33,9 +33,9 @@ export class BandService extends OntimizeEEService {
             filter: {
                 band_id: id
             },
-            columns: ["song_audio"],
+            columns: ["song_audio","song_name"],
             sqltypes: {
-                "song_audio": 12
+                "song_audio": 12,"song_name":12
             }
         });
         var self = this;
