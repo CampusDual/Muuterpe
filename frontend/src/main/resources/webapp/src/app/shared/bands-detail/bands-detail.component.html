@@ -1,90 +1,76 @@
 <div class="iconos">
-  <a mat-button href="{{data.band_facebook}}" target="_blank">
-    <img src="https://img.icons8.com/material-outlined/40/000000/facebook.png" />
-  </a>
-  <a mat-button href="{{data.band_instagram}}" target="_blank">
-    <img src="https://img.icons8.com/material-outlined/40/000000/instagram-new.png" />
-  </a>
-  <a mat-button href="{{data.band_youtube}}" target="_blank">
-    <img src="https://img.icons8.com/material-outlined/40/000000/youtube-play.png" />
-  </a>
+  <a mat-button style="min-width: 0px; padding: 0px;" href="{{data.band_facebook}}" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/40/000000/facebook.png" /></a>
+  <a mat-button style="min-width: 0px; padding: 0px;" href="{{data.band_instagram}}" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/40/000000/instagram-new.png" /></a>
+  <a mat-button style="min-width: 0px; padding: 0px;" href="{{data.band_youtube}}" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/40/000000/youtube-play.png" /></a>
 </div>
 
 <div class="band_detail">
 
-  <div class="slideshow">
-    <slideshow [height]="'500px'" [minHeight]="'400px'" [autoPlay]="false" [showArrows]="true" [imageUrls]="arrayImages"
-      [backgroundSize]="'contain'" [backgroundPosition]="'left left'">
-    </slideshow>
-  </div>
+    <div class="slideshow">
+      <slideshow [height]="'500px'" [minHeight]="'400px'" [autoPlay]="false" [showArrows]="true"
+        [imageUrls]="arrayImages" [backgroundSize]="'contain'" [backgroundPosition]="'left left'">
+      </slideshow>
+    </div>
 
-  <div class="band_text">
-    <h1>{{data.band_name}}</h1>
-    <p>{{'Category'|oTranslate}}:{{data.CATEGORY}}</p>
-    <p>{{data.band_info}}</p>
-  </div>
+    <div class="band_text">
+      <h1>{{data.band_name}}</h1>
+      <p>{{'Category'|oTranslate}}:<span style="font-weight: bold;"> {{data.CATEGORY}}</span></p>
+      <p>{{data.band_info}}</p>
+    </div>
 
   <div class="videos">
     <ng-container *ngFor="let video of arrayVideos; let i = index">
-      <!-- <ng-container *ngFor="let name of arraySongName"> -->
-        <mat-accordion style="background-color: brown;" levation="0">
-          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Video {{arraySongName[i]}}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="video-container" class="videos" style="margin-right: 10px;">
-              <iframe frameborder="0" scrolling="no" marginheight="10" marginwidth="10" width="788.54" height="443"
-                type="text/html" [src]="video |safe">
-              </iframe>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      <!-- </ng-container> -->
+      <mat-accordion levation="0">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{arraySongName[i]}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="video-container" class="videos" style="margin-right: 10px; padding-bottom: 20px;">
+            <iframe frameborder="0" scrolling="no" marginheight="10" marginwidth="10" width="788.54" height="443"
+              type="text/html" [src]="video |safe">
+            </iframe>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </ng-container>
   </div>
 
 
   <div class="comments">
-    <h2>{{'COMMENTS'|oTranslate}}</h2>
-    <div>
-      <o-list [static-data]="getCommentResult()" title="" quick-filter="false" controls="false" refresh-button="false"
-        insert-button="false" insert-button-floatable="false" delete-button="false" selectable="false" dense="false"
-        detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
-        <o-list-item class="olist-item" *ngFor="let item of bandCommentResult">
-          <div class="comment-text-alias">
-            <b [routerLink]="['/main/band', bandCommentResult.comment_alias]">{{item.comment_alias}}:</b>
-          </div>
-          <div class="comment-text-body">
-            <b [routerLink]="['/main/band', bandCommentResult.comment_body]">{{item.comment_body}}</b>
-          </div>
-        </o-list-item>
-      </o-list>
-    </div>
+    <mat-nav-list role="list">
+      <div mat-header>{{'COMMENTS'|oTranslate}}</div>
+      <mat-list-item role="listitem" *ngFor="let item of bandCommentResult">
+        <p><span style="font-weight: bold; padding-right: 10px;">{{item.comment_alias}}</span> {{item.comment_body}}</p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-nav-list>
 
     <div class="bandcomment-item">
-      <h3>{{'YOUR COMMENT'|oTranslate}}</h3>
+      <p class = "p_comment">{{'YOUR COMMENT'|oTranslate}}</p>
       <form service="bands" entity="commentInsert" key="band_id" [formGroup]="registerForm" show-header="no">
         <o-row>
           <mat-form-field class="comment-alias" [ngClass]="">
-            <mat-label>{{'NICKNAME' | oTranslate}}</mat-label>
+            <mat-label style="font-family: Lucida Console, Courier,monospace;">{{'NICKNAME' | oTranslate}}</mat-label>
             <input class="input-register" matInput type="text" formControlName="nick"
               placeholder="Min.3, max. 25 characteres" required="true" minlength="3" maxlength="25" variant="outlined">
           </mat-form-field>
         </o-row>
         <o-row>
           <mat-form-field class="comment-body" [ngClass]="">
-            <mat-label>{{'COMMENT' | oTranslate}}</mat-label>
+            <mat-label style="font-family: Lucida Console, Courier,monospace;">{{'COMMENT' | oTranslate}}</mat-label>
             <textarea class="input-register" matInput type="text" formControlName="comment_body" minlength="3"
               maxlength="200"></textarea>
           </mat-form-field>
         </o-row>
 
-        <div class="comment-buttons">
-          <o-button (click)="onResetForm()" attr="stroked" type="STROKED" label="{{'CLEAR'|oTranslate}}" layout-padding></o-button>
-          <o-button (click)="createComment()" attr="stroked" type="STROKED" label="{{'COMMENT'|oTranslate}}" layout-padding>
-          </o-button>
+        <div class="div_button">
+          <button mat-raised-button class="buy-button" (click)="onResetForm()">{{'CLEAR'|oTranslate}}</button>
+          <button mat-raised-button class="buy-button" (click)="createComment()">{{'COMMENT'|oTranslate}}</button>
         </div>
       </form>
     </div>

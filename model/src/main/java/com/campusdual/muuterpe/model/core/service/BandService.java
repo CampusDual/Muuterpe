@@ -1,18 +1,22 @@
 package com.campusdual.muuterpe.model.core.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.campusdual.muuterpe.api.core.service.IBandService;
 import com.campusdual.muuterpe.model.core.dao.BandCommentDao;
 import com.campusdual.muuterpe.model.core.dao.BandDao;
+import com.campusdual.muuterpe.model.core.dao.BandVisitsDao;
 import com.campusdual.muuterpe.model.core.dao.CategoryDao;
 import com.campusdual.muuterpe.model.core.dao.ConfigurationDao;
 import com.campusdual.muuterpe.model.core.dao.SongDao;
@@ -36,6 +40,8 @@ public class BandService implements IBandService {
 	private DefaultOntimizeDaoHelper daoHelper;
 	@Autowired
 	private BandCommentDao bandCommentDao;
+	@Autowired
+	private BandVisitsDao bandVisitsDao;
 
 	@Override
 	public EntityResult bandQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -78,8 +84,8 @@ public class BandService implements IBandService {
 	}
 	
 	@Override
-	public EntityResult commentInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-	return this.daoHelper.insert(bandCommentDao, attrMap);
+	public EntityResult commentInsert(Map<String, Object> body){
+	return this.daoHelper.insert(bandCommentDao, body);
 	}
 
 	@Override
@@ -92,7 +98,7 @@ public class BandService implements IBandService {
 	}
 
 	@Override
-	public EntityResult bandInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+	public EntityResult bandInsert(Map<String, Object> attrMap){
 		return this.daoHelper.insert(bandDao, attrMap);
 	}
 
@@ -102,6 +108,31 @@ public class BandService implements IBandService {
 		return this.daoHelper.update(bandDao, attrMap, keyMap);
 	}
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public EntityResult bandVisitsUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
+			throws OntimizeJEERuntimeException {
+		List<String> attr = new ArrayList<String>();
+		attr.add(BandVisitsDao.ATTR_ID);
+		attr.add(BandVisitsDao.ATTR_VISITS_NUM);
+		EntityResult query = this.daoHelper.query(this.bandVisitsDao, keyMap, attr);
+		if (query.getCode() != EntityResult.OPERATION_WRONG) {
+			Hashtable visit_id;
+			if (query.calculateRecordNumber() > 0) {
+				 visit_id = query.getRecordValues(0);
+			}else {
+				keyMap.put(BandVisitsDao.ATTR_VISITS_NUM, 0);
+				 EntityResult insert = this.daoHelper.insert(this.bandVisitsDao, keyMap);
+				 visit_id = new Hashtable<String,Object>();
+				 visit_id.put(BandVisitsDao.ATTR_ID, insert.get(BandVisitsDao.ATTR_ID));
+			}
+			attrMap.clear();
+			attrMap.put(BandVisitsDao.ATTR_VISITS_NUM, (int)visit_id.remove(BandVisitsDao.ATTR_VISITS_NUM) + 1);
+			return this.daoHelper.update(bandVisitsDao, attrMap, visit_id);
+		}
+		return null;
+	}
+	
 	@Override
 	public EntityResult bandDelete(Map<String, Object> keyMap) {
 		return this.daoHelper.delete(this.bandDao, keyMap);
@@ -215,6 +246,11 @@ public class BandService implements IBandService {
 		
 	}
 
+	@Override
+	public void bandsVisitsUpdate(Map<String, Object> body) {
+		System.out.println(body);
+
+	}
 	
 
 }

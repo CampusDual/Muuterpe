@@ -1,5 +1,6 @@
 <div class="body_home" fxLayout="column" fxFlex="1 1 auto">
   <div class="div_bandsEmph">
+
     <o-grid #grid attr="BANDTABLE" title="{{'HIGHLIGHT BANDS'|oTranslate}}" service="bands" entity="getBandsEmph"
       columns="band_name;CATEGORY;band_facebook;band_instagram;band_youtube" keys="band_id" query-rows="2"  quick-filter="false" controls="true" 
       refresh-button="no" gutter-size="18px" detail-mode="none" show-page-size="false" pagination-controls="false" class="o-grid-home">
@@ -15,7 +16,7 @@
           </div>
           <div fxLayout="column" fxLayoutAlign="start center" class="band_data">
             <span class=" band_name">{{ item.band_name }}</span>
-            <span>{{  item.CATEGORY  }}</span>
+            <span class="cat">{{  item.CATEGORY  }}</span>
           </div>
         </div>
       </o-grid-item>
@@ -24,7 +25,7 @@
 
 
   <div class="div_eventsEmph">
-    <o-list #list attr="EVENTTABLE" service="events" title="{{'NEXT EVENTS'|oTranslate}}" entity="event" keys="event_id"
+    <o-list #list attr="EVENTTABLE" service="events" title="{{'NEXT EVENTS'|oTranslate}}" entity="getNextEvents" keys="event_id"
       columns="event_name;event_date_time;event_region" refresh-button="true" quick-filter="false" insert-button="false"
       delete-button="false" row-height="medium" detail-mode="none" refresh-button="no" gutter-size="0">
       <o-list-item *ngFor="let row of list.dataArray">

@@ -5,15 +5,20 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.campusdual.muuterpe.api.core.service.IBandService;
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.server.rest.ORestController;
+import com.ontimize.jee.server.rest.UpdateParameter;
 
 
 @RestController
@@ -74,6 +79,14 @@ public class BandRestController extends ORestController<IBandService> {
 	public EntityResult bandImageQuery(@RequestBody Map<String, Object> body) {
 		return this.bandService.bandImageQuery(body);
 	}
+//	
+//	@RequestMapping(value = "/bandsVisits", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)	
+//	public void updateBandVisits(@RequestBody Map<String, Object> body) {
+//		this.bandService.bandsVisitsUpdate(body);
+//	}
 	
-	
+//	@RequestMapping(value = "/{name}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<EntityResult> update(@PathVariable("name") String name, @RequestBody UpdateParameter updateParameter) {
+//		return new ResponseEntity<>(new EntityResult(), HttpStatus.OK);
+//	}
 }
