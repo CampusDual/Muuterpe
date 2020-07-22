@@ -1,6 +1,0 @@
-<p class="events-card-title" fxFlex>{{ 'EVENTS_TOTAL' | oTranslate }}</p>
-<p class="events-card-events-amount" fxFlex>{{ eventsAmount }}</p>
-<p class="events-card-title" fxFlex>{{ 'EVENTS_TOTAL_CATEGORIES' | oTranslate }}</p>
-<o-chart type="multiBarHorizontalChart" x-label="Axis x" y-label="Axis Y" service="events" entity="eventTypeAggregate"
-  x-axis="EVENTTYPENAME" y-axis="AMOUNT" [chart-parameters]="chartParameters" class="events-card-chart" fxFlex>
-</o-chart>

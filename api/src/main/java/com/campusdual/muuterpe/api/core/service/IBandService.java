@@ -38,6 +38,11 @@ public interface IBandService {
 	public EntityResult bandCommentsQuery(Map<String, Object> body);
 
 	public EntityResult bandVisitById(Map<String, Object> body);
+
+	public void bandsVisitsUpdate(Map<String, Object> body);
+
+	public EntityResult bandVisitsUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
+			throws OntimizeJEERuntimeException;
 	
 
 

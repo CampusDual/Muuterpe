@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
 
   public openDetail(data: any): void {
     this.dialog.open(EventsDetailComponent, {
-      height: '50%',
-      width: '50%',
       data: data
     });
   }

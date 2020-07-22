@@ -5,6 +5,7 @@ import { OntimizeEEService, Observable } from 'ontimize-web-ngx';
 import { share } from 'rxjs/operators';
 import { IBandModel } from 'app/shared/models/iband.model';
 import { IBandCommentModel } from 'app/shared/models/ibandcomment.model';
+import { ConstantPool } from '@angular/compiler';
 
 @Injectable(
     {
@@ -22,6 +23,7 @@ export class BandService extends OntimizeEEService {
             'Authorization': 'Bearer ' + myData.session.id
         });
     }
+
     getBandDataId(id: number) {
         const url = CONFIG.apiEndpoint + '/' + 'bands/getBandSongs/search';
         var options = {
@@ -36,7 +38,6 @@ export class BandService extends OntimizeEEService {
                 "song_audio": 12
             }
         });
-        console.log(body);
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
             self.httpClient.post(url, body, options).subscribe(function (resp) {
@@ -62,7 +63,6 @@ export class BandService extends OntimizeEEService {
                 "band_images_path": 12
             }
         });
-        console.log(body);
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
             self.httpClient.post(url, body, options).subscribe(function (resp) {
@@ -83,14 +83,15 @@ export class BandService extends OntimizeEEService {
             filter: {
                 band_id: id
             },
-            columns: ["band_name","comment_body","comment_alias"],
+            columns: ["band_name",
+                "comment_body",
+                "comment_alias"],
             sqltypes: {
                 "band_name": 12,
                 "comment_body": 12,
                 "comment_alias": 12
             }
         });
-        console.log(body);
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
             self.httpClient.post(url, body, options).subscribe(function (resp) {
@@ -101,17 +102,18 @@ export class BandService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
-    commentInsert(bandComment:IBandCommentModel){
+
+    commentInsert(bandComment: IBandCommentModel) {
         const url = CONFIG.apiEndpoint + '/' + 'bands/comment';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
-         
+
             data: {
-                "band_id":bandComment.band_id,
-                "comment_body":bandComment.comment_body,
-                "comment_alias":bandComment.comment_alias
+                "band_id": bandComment.band_id,
+                "comment_body": bandComment.comment_body,
+                "comment_alias": bandComment.comment_alias
             },
             sqltypes: {
                 "band_id": 12,
@@ -119,7 +121,6 @@ export class BandService extends OntimizeEEService {
                 "comment_alias": 12
             }
         });
-        console.log(body);
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
             self.httpClient.post(url, body, options).subscribe(function (resp) {
@@ -129,6 +130,32 @@ export class BandService extends OntimizeEEService {
             }, function () { return _innerObserver.complete(); });
         });
         return dataObservable.pipe(share());
+    }
+
+    updateBandDataIdVisits(id: number) {
+        const url = CONFIG.apiEndpoint + '/' + 'bands/bandVisits';
+        var options = {
+            headers: this.buildHeaders()
+        };
+        var body = JSON.stringify({
+            filter: {
+                band_id: id
+            },
+            data: {
+                "visits_num": 1
+            },
+            sqltypes: {
+                "band_id": 4,
+                "visits_num": 4
+            }
+        });
+        this.httpClient.put(url, body, options).subscribe(function (resp){
+            console.log("Ok");
+        }, function (error){
+            console.log("error");
+        }, function() {
+            console.log("complete");
+        });
     }
 
 }

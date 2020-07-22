@@ -50,12 +50,17 @@ export class BandsDetailComponent implements OnInit {
   autoPlay: boolean = true;
 
   ngOnInit() {
-    this.alias = this.data.band_name.replace(/\s/g, "");
+   this.alias = this.data.band_name.replace(/\s/g, "");
     this.ngOnStartBandId(this.data.band_id);
     this.ngOnStartBandName(this.alias);
     this.ngOnStartComments(this.data.band_id);
     this.registerForm = this.createForm();
     this.bandComment.band_id = this.data.band_id;
+    this.ngOnStartBandVisits(this.data.band_id); 
+  }
+
+  ngOnStartBandVisits(id: number) {
+    this.bandService.updateBandDataIdVisits(id)
   }
 
   ngOnStartBandId(id: number) {
@@ -66,7 +71,6 @@ export class BandsDetailComponent implements OnInit {
             this.arrayVideos.push(value.song_audio); 
             this.arraySongName.push(value.song_name);           
           });
-          this.arrayVideos.push('');
         }
       },
       err => console.error(err)
