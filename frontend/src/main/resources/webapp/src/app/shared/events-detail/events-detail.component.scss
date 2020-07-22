@@ -1,46 +1,52 @@
-.information {
-    margin-bottom:100px;
-    margin-top: 150px;
-    text-align: center;
-    font-family: "Lucida Console", Courier, monospace;
-    font-size: 30px;
+.event-data {
 
-}
+    .information {
+        margin-bottom: 100px;
+        margin-top: 150px;
+        text-align: center;
+        font-family: "Lucida Console", Courier, monospace;
+        font-size: 30px;
 
-.event-address {
-    font-family: "Lucida Console", Courier, monospace;
-    font-size: 25px;
-}
-
-.event_date_time {
-    font-family: "Lucida Console", Courier, monospace;
-    font-size: 20px;
-}
-
-.bands {
-    text-align: left;
-    font-family: "Lucida Console", Courier, monospace;
-    font-size: 25px;
-
-}
-
-.item-hover {
-    width: 100%;
-    font-family: "Lucida Console", Courier, monospace;
-    font-size: 20px;
-}
-
-.event_buy_tickets {
-    display: block;
-    float: right;
-    padding-top: 50px;
-    margin-left: 375px;
-    margin-bottom: 60px;
-    float: right;
-    cursor: pointer;
-
-    .buy-button {
-        background-color: #84a9ac;
-        border: solid black 1px;
     }
+
+    .event-address {
+        font-family: "Lucida Console", Courier, monospace;
+        font-size: 25px;
+    }
+
+    .event_date_time {
+        font-family: "Lucida Console", Courier, monospace;
+        font-size: 20px;
+    }
+
+    .bands {
+        text-align: left;
+        font-family: "Lucida Console", Courier, monospace;
+        font-size: 25px;
+
+    }
+
+    .item-hover {
+        width: 100%;
+        font-family: "Lucida Console", Courier, monospace;
+        font-size: 20px;
+       
+    }
+
+    .event_buy_tickets {
+        display: block;
+        float: right;
+        padding-top: 50px;
+        margin-left: 375px;
+        margin-bottom: 60px;
+        float: right;
+        cursor: pointer;
+
+        .buy-button {
+            background-color: #84a9ac;
+            border: solid black 1px;
+        }
+    }
+
+
 }
