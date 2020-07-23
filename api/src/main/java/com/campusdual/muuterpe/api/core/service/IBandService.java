@@ -43,8 +43,5 @@ public interface IBandService {
 
 	public EntityResult bandVisitsUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException;
-	
-
-
-	
+		
 	}
